@@ -1,0 +1,136 @@
+/* 
+purple - #800080
+text header - #333333 
+text - black
+*/
+
+#head {
+    display: flex;
+    margin-top: 24px;
+}
+
+#head .logo {
+    align-items: center;
+    line-height: 1.2;
+}
+
+#head .logo .name {
+    font-size: 48px;
+    color: #800080;
+}
+
+#head .logo .subname {
+    font-size: 12px;
+}
+
+#head .navigation {
+    width: 35%;
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+#head .navigation .nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.nav-list .nav-items {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#need-site{
+    padding-top: 150px;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#need-site .text{
+    width: 65%;
+}
+
+#need-site .text h1{
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+#need-site .text p{
+    font-family:Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+#need-site .img{
+    width: 23%;
+}
+
+#our-team .heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 72px;
+}
+
+#our-team h2{
+    text-align: center;
+    font-size: 64px;
+    font-weight: bold;
+}
+
+#our-team .heading .line{
+    height: 1px;
+    width: 15%;
+    border: 2px solid black;
+    }
+
+    #our-team .card{
+        max-width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #our-team .card .img-container{
+        margin-bottom: 32px;
+    }
+
+    #our-team .card h4{
+        margin-bottom: 16px;
+    }
+
+
+
+    #our-team .card .img-container img{
+        width: 150px;
+        border-radius: 100%;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        object-fit: cover;
+        border: 4px solid  rgba(0, 0, 0, 0.25);
+    }
+ 
+    #our-team .card p, #our-team .card h4{
+        text-align: center;
+    }
+    
+    #our-team .card p, #our-team .card p{
+        font-style: italic;
+    }
+
+    #our-team .cards{
+        display: flex;
+        flex-wrap: wrap;
+        height: 100vh;
+        gap: 15%;
+      justify-content: space-between;
+    }

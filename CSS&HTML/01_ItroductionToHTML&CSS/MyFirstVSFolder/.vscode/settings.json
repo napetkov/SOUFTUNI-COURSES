@@ -1,0 +1,10 @@
+{
+    "window.commandCenter": false,
+    "editor.suggest.showStatusBar": true,
+    "editor.scrollbar.scrollByPage": false,
+    "editor.scrollbar.horizontal": "auto",
+    "html.format.indentHandlebars": false,
+    "problems.showCurrentInStatus": false,
+    "search.useParentIgnoreFiles": false,
+    "search.useGlobalIgnoreFiles": false
+}

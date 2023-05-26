@@ -1,0 +1,131 @@
+body {
+    background-color: rgb(238, 238, 238);
+    padding: 96px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.page{
+    display: flex;
+    flex-wrap: wrap;
+}
+.content{
+    width: 100%;
+}
+.content{
+    display: inline-block;
+    width: 75%;
+}
+
+header {
+    border-bottom: 2px solid black;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.title {
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 100%;
+    width: auto;
+}
+/* nav {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    width: auto;
+} */
+
+/* .navigation-list .item {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 550;
+    margin: 16px;
+} */
+/* 
+.navigation-list .item a {
+    text-decoration: none;
+    color: rgb(0, 102, 0);
+} */
+/* 
+.navigation-list {
+    width: 100%;
+} */
+
+.main {
+    font-family: Georgia, serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, serif;
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 1rem/1.2;
+}
+
+p {
+    margin-bottom: 8px;
+}
+
+.first-section, .second-section{
+    margin-bottom: 48px;
+}
+.first-section .first-image , .third-section .second-image {
+    float: right;
+    background-color: rgb(255, 255, 255);
+    border: 4px solid black;
+    padding: 8px;
+    margin: 12px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+}
+
+.third-section .second-image{
+    float: left;
+}
+.second-section .p-quote{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+/* hr{
+    color: gray;
+    text-decoration: none;
+} */
+
+.second-section .quote {
+    font-family: Georgia, serif;
+    padding-left: 16px;
+    font-style: italic;
+    height: 80%;
+    border-left: 4px solid lightgray;
+}
+.author-name{
+    text-align: right;
+}
+
+p{
+    margin-bottom: 32px;
+}
+
+.right-nav{
+  top: 0;
+  right: 0;
+  width: 25%;
+  padding-left: 32px;
+}
+
+.right-nav .list-items{
+    list-style-type: square;
+}
+.list-items .item a{
+    color:  rgb(0, 153, 0);
+    text-decoration: none;
+}

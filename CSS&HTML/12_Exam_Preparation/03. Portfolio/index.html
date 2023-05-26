@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03. Portfolio</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <section id="hero" class="page-section section-felxed">
+        <div class="navigation">
+          <span>MENU</span>
+          <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="section-info">
+          <h1 class="title">
+            <b class="bolded">Apollo</b>
+            Jade Template
+          </h1>
+
+          <p class="desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex.
+          </p>
+
+          <div class="divider vertical"></div>
+        </div>
+
+        <img
+          src="images/hero.png"
+          alt="hero img"
+          class="section-img hero-img"
+        />
+      </section>
+
+      <section id="camera" class="page-section section-felxed">
+        <div class="section-info">
+          <div class="divider horizontal"></div>
+          <h1 class="title">
+            My name is
+            <b>Apollo</b>
+          </h1>
+
+          <p class="desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex.
+          </p>
+          <p>
+            Ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+            numquam eius modi tempora incidunt ut labore et dolore magnam
+            aliquam quaerat voluptatem.
+          </p>
+          <ul class="socials" role="list">
+            <li class="social"><i class="fab fa-facebook-square"></i></li>
+            <li class="social"><i class="fab fa-instagram"></i></li>
+            <li class="social"><i class="fab fa-twitter-square"></i></li>
+            <li class="social"><i class="fab fa-pinterest-square"></i></li>
+          </ul>
+        </div>
+        <img
+          src="images/camera.png"
+          alt="hero img"
+          class="section-img hero-img"
+        />
+      </section>
+
+      <section id="gallery" class="page-section">
+        <ul class="list" role="list">
+            <li class="picture">
+                <img src="images/thumb-3.jpeg" alt="thumb-3">
+            </li>
+            <li class="picture">
+                <img src="images/thumb-4.jpeg" alt="thumb-4">
+            </li>
+            <li class="picture">
+                <img src="images/thumb-122.jpeg" alt="thumb-122">
+            </li>
+        </ul>
+      </section>
+
+      <section id="contacts" class="page-section">
+        <form action="/submit" class="form">
+            <input type="email" name="email" class="email" placeholder="you email">
+            <input type="subject" name="subject" class="subject" placeholder="subject">
+
+            <textarea name="msg" name="massage" placeholder="Massage" rows="5" class="msg"></textarea>
+
+            <button class="btn">SEND MASSAGE</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

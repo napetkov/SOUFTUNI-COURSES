@@ -1,0 +1,10 @@
+.btn{
+    all: unset;
+    border: 2px solid black;
+    padding: 6px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 180px;
+}
+

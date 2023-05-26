@@ -1,0 +1,14 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #CCCCCC;
+}
+.italic{
+    font-style: italic;
+}
+.heading{
+    font-size: 28px;
+}
+.paragraph{
+    font-size: 24px;
+}

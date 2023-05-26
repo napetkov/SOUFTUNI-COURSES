@@ -1,0 +1,99 @@
+body{
+    display: grid;
+    grid-template-areas: 
+    "head head"
+    "aside main"
+    "footer footer";
+    grid-template-columns: 100px auto;
+    gap: 10px;
+    margin: 36px;
+}
+header , main, aside, footer{
+    border-radius: 3px;
+    background-color: rgb(181, 216, 255);
+    padding: 5px 10px;
+
+}
+
+header{
+    grid-area: head;
+    font-size: 1.5rem;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+
+}
+
+header h1{
+    margin: auto 8px;
+}
+main{
+    grid-area: main;
+}
+footer{
+    grid-area: footer;
+    font-size: 1.2rem;
+    height: 3vh;
+}
+
+aside{
+    grid-area: aside;
+}
+
+.aside {
+    list-style-type: none;
+    margin: 0px;
+    padding: 5px;
+}
+
+.aside.items a{
+    display: block;
+    padding: 2px 0px;
+    font-size: 1.1rem;
+    color: rgb(86, 40, 129);
+    text-decoration: none;
+}
+.main-list li a{
+    text-decoration: none;
+    color: black;
+}
+
+.list-items{
+    width: 50vw;
+    list-style-type: none;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    color: rgb(86, 40, 129);
+}
+
+
+@media screen and (max-width: 500px){
+    body{
+        grid-template-areas: 
+        "head head"
+        "aside aside"
+        "main main"
+        "footer footer";
+        gap: 16px;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    main{
+        grid-area: main;
+    }
+    header h1{
+        margin-bottom: 12px;
+        margin-left: 0;
+    }
+    aside{
+        display: block;
+    }
+    .list-items{
+        flex-direction: column;
+        align-items: center;
+    }
+}

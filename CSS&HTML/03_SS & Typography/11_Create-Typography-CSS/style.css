@@ -1,0 +1,40 @@
+html {
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 25px;
+    margin: 25px;
+}
+
+
+blockquote{
+    padding-left: 40px;
+    border-left: 5px solid rgb(221, 221, 221);
+    font-style: italic;
+}
+blockquote p.koko{
+    text-align: right;
+}
+
+.heading{
+    font-family: Georgia, serif;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th,table td{
+    text-align: left;
+    border: 1px solid gray;
+    padding: 8px;
+}
+
+thead{
+    background-color: gray;
+}
+
+tbody tr:nth-child(odd){
+background-color: lightgray;
+}
