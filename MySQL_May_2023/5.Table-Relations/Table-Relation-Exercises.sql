@@ -84,7 +84,7 @@ create table exams
 (
     exam_id int auto_increment not null primary key,
     name    varchar(30)
-);
+) auto_increment = 101;
 
 create table students_exams
 (
@@ -121,4 +121,89 @@ VALUES (1, 101),
        (3, 103),
        (2, 102),
        (2, 103);
+
+# 4
+create table teachers
+(
+    teacher_id int not null primary key auto_increment,
+    name       varchar(30),
+    manager_id int
+) auto_increment = 101;
+
+insert into teachers(name, manager_id)
+VALUES ('John', NULL),
+       ('Maya', 106),
+       ('Silvia', 106),
+       ('Ted', 105),
+       ('Mark', 101),
+       ('Greta', 101)
+;
+alter table teachers
+    add constraint fk__manager_id__teacher_id
+        foreign key (manager_id)
+            references teachers (teacher_id);
+
+
+# 5
+create database online_store_database;
+use online_store_database;
+
+create table cities
+(
+    city_id int auto_increment not null primary key,
+    name    varchar(50)        not null
+);
+
+create table customers
+(
+    customer_id int auto_increment not null primary key,
+    name        varchar(50)        not null,
+    birthday    date,
+    city_id     int                not null,
+    constraint fk__customers_city_id__cities_city_id
+        foreign key (city_id)
+            references cities (city_id)
+);
+
+create table orders
+(
+    order_id    int auto_increment not null primary key,
+    customer_id int                not null,
+    constraint fk__orders_customer_id__customers_customers_id
+        foreign key (customer_id)
+            references customers (customer_id)
+);
+
+create table items_type
+(
+    item_type_id int auto_increment not null primary key,
+    name         varchar(50)        not null
+);
+
+create table items
+(
+    item_id      int auto_increment not null primary key,
+    name         varchar(50)        not null,
+    item_type_id int                not null,
+    constraint fk__items_item_type_id__items_type_item_type_id
+        foreign key (item_id)
+            references items_type (item_type_id)
+);
+
+create table order_items
+(
+    order_id int,
+    item_id  int,
+    constraint pk__order_id__item_id
+        primary key (order_id, item_id),
+    constraint fk__order_item_order_id__orders_order_id
+        foreign key (order_id) references orders (order_id),
+    constraint fk__order_item_item_id__items_item_id
+        foreign key (item_id) references items (item_id)
+);
+
+
+
+
+
 
