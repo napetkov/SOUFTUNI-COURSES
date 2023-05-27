@@ -150,16 +150,16 @@ use online_store_database;
 
 create table cities
 (
-    city_id int auto_increment not null primary key,
-    name    varchar(50)        not null
+    city_id int not null primary key,
+    name    varchar(50)
 );
 
 create table customers
 (
-    customer_id int auto_increment not null primary key,
-    name        varchar(50)        not null,
+    customer_id int not null primary key,
+    name        varchar(50),
     birthday    date,
-    city_id     int                not null,
+    city_id     int,
     constraint fk__customers_city_id__cities_city_id
         foreign key (city_id)
             references cities (city_id)
@@ -167,27 +167,27 @@ create table customers
 
 create table orders
 (
-    order_id    int auto_increment not null primary key,
-    customer_id int                not null,
+    order_id    int not null primary key,
+    customer_id int,
     constraint fk__orders_customer_id__customers_customers_id
         foreign key (customer_id)
             references customers (customer_id)
 );
 
-create table items_type
+create table item_types
 (
-    item_type_id int auto_increment not null primary key,
-    name         varchar(50)        not null
+    item_type_id int not null primary key,
+    name         varchar(50)
 );
 
 create table items
 (
-    item_id      int auto_increment not null primary key,
-    name         varchar(50)        not null,
-    item_type_id int                not null,
+    item_id      int not null primary key,
+    name         varchar(50),
+    item_type_id int,
     constraint fk__items_item_type_id__items_type_item_type_id
-        foreign key (item_id)
-            references items_type (item_type_id)
+        foreign key (item_type_id)
+            references item_types (item_type_id)
 );
 
 create table order_items
@@ -195,14 +195,64 @@ create table order_items
     order_id int,
     item_id  int,
     constraint pk__order_id__item_id
-        primary key (order_id, item_id),
+        primary key (item_id, order_id),
     constraint fk__order_item_order_id__orders_order_id
         foreign key (order_id) references orders (order_id),
     constraint fk__order_item_item_id__items_item_id
         foreign key (item_id) references items (item_id)
 );
 
+# 6
+create database university_database;
+use university_database;
 
+create table subjects
+(
+    subject_id   int not null primary key,
+    subject_name varchar(50)
+);
+
+create table majors
+(
+    major_id int not null primary key,
+    name     varchar(50)
+);
+
+create table students
+(
+    student_id     int not null primary key,
+    student_number varchar(12),
+    student_name   varchar(50),
+    major_id       int,
+    constraint fk__students_major_id__majors_major_id
+        foreign key (major_id)
+            references majors (major_id)
+);
+
+create table payments
+(
+    payment_id     int primary key,
+    payment_date   date,
+    payment_amount decimal(8, 2),
+    student_id     int,
+    constraint fk__payments_student_is__students_student_id
+        foreign key (student_id)
+            references students (student_id)
+);
+
+create table agenda
+(
+    student_id int,
+    subject_id int,
+    constraint pk__student_id__subject_id
+        primary key (student_id, subject_id),
+    constraint fk__agenda_student_id__students_student_id
+        foreign key (student_id)
+            references students (student_id),
+    constraint fk__agenda_subject_id__subjects_subject_id
+        foreign key (subject_id)
+            references subjects (subject_id)
+);
 
 
 
