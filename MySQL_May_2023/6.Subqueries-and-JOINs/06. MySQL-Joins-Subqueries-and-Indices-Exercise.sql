@@ -54,18 +54,79 @@ limit 5;
 # 8
 select e.employee_id, first_name, if(year(p.start_date) >= 2005, null, p.name) as project_name
 from employees e
-    join employees_projects ep
-on ep.employee_id = e.employee_id
-    join projects p on p.project_id = ep.project_id
+         join employees_projects ep
+              on ep.employee_id = e.employee_id
+         join projects p on p.project_id = ep.project_id
 where ep.employee_id = 24
 order by project_name asc;
 
 # 9
-select e.employee_id, e.first_name,e.manager_id, m.first_name from employees e
-join employees m on m.employee_id = e.manager_id
-where e.manager_id in (7,3)
+select e.employee_id, e.first_name, e.manager_id, m.first_name
+from employees e
+         join employees m on m.employee_id = e.manager_id
+where e.manager_id in (7, 3)
 order by e.first_name;
 
+# 10
+select e.employee_id,
+       concat(e.first_name, ' ', e.last_name) as employee_name,
+       concat(m.first_name, ' ', m.last_name) as manager_name,
+       d.name                                 as department_name
+from employees e
+         join employees m on m.employee_id = e.manager_id
+         join departments d on d.department_id = e.department_id
+order by employee_id
+limit 5;
 
+# 11
+select min(avg_salary)
+from (select avg(salary) as avg_salary
+      from employees
+      group by department_id) as min_average_salary;
 
+# 12
+select c.country_code, m.mountain_range, p.peak_name, p.elevation
+from countries c
+         join mountains_countries mc on c.country_code = mc.country_code
+         join mountains m on m.id = mc.mountain_id
+         join peaks p on p.mountain_id = m.id
+where c.country_code = 'BG'
+  and p.elevation > 2835
+order by elevation desc;
+# 13
+select c.country_code, count(m.mountain_range) as mountain_range
+from countries c
+         join mountains_countries mc on mc.country_code = c.country_code
+         join mountains m on m.id = mc.mountain_id
+where c.country_code in ('US', 'RU', 'BG')
+group by c.country_code
+order by mountain_range desc;
 
+# 14
+select country_name, r.river_name
+from countries c
+         join continents con on con.continent_code = c.continent_code
+         left join countries_rivers cr on cr.country_code = c.country_code
+         left join rivers r on r.id = cr.river_id
+where con.continent_name = 'Africa'
+order by country_name asc
+limit 5;
+
+# 16
+select count(c.country_code)
+from countries c
+         left join mountains_countries mc on mc.country_code = c.country_code
+         left join mountains m on m.id = mc.mountain_id
+where m.id is null;
+
+# 17
+select country_name, max(p.elevation) as higest_peak_elevation, max(r.length) as longest_river_length
+from countries c
+         join mountains_countries mc on c.country_code = mc.country_code
+         join mountains m on mc.mountain_id = m.id
+         join peaks p on m.id = p.mountain_id
+         join countries_rivers cr on cr.country_code = c.country_code
+         join rivers r on cr.river_id = r.id
+group by country_name
+order by higest_peak_elevation desc ,longest_river_length desc , country_name
+limit 5;
