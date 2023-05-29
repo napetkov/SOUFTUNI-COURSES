@@ -29,11 +29,43 @@ order by d.department_id desc
 limit 5;
 
 # 5
-select e.employee_id, first_name, ep.project_id from employees as e
-left join employees_projects as ep on ep.employee_id = e.employee_id
+select e.employee_id, first_name
+from employees as e
+         left join employees_projects as ep on ep.employee_id = e.employee_id
 where ep.project_id is null
 order by employee_id desc
 limit 3;
 
 # 6
+select first_name, last_name, hire_date, d.name as `department_name`
+from employees e
+         join departments as d on d.department_id = e.department_id and d.name in ('Sales', 'Finance')
+where hire_date > 1999 / 01 / 01
+order by hire_date asc;
+
+# 7
+select e.employee_id, first_name, p.name as project_name
+from employees e
+         join employees_projects ep on ep.employee_id = e.employee_id
+         join projects p on p.project_id = ep.project_id and p.start_date > 2002 - 08 - 13 and p.end_date is null
+order by first_name, project_name
+limit 5;
+
+# 8
+select e.employee_id, first_name, if(year(p.start_date) >= 2005, null, p.name) as project_name
+from employees e
+    join employees_projects ep
+on ep.employee_id = e.employee_id
+    join projects p on p.project_id = ep.project_id
+where ep.employee_id = 24
+order by project_name asc;
+
+# 9
+select e.employee_id, e.first_name,e.manager_id, m.first_name from employees e
+join employees m on m.employee_id = e.manager_id
+where e.manager_id in (7,3)
+order by e.first_name;
+
+
+
 
