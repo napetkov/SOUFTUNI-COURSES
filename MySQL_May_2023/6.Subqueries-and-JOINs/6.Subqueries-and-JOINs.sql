@@ -52,6 +52,6 @@ from employees
 where manager_id is null;
 
 # 4
-select count(salary)
+select count(salary) as count
 from employees
 where (select avg(salary) from employees) < employees.salary ;
