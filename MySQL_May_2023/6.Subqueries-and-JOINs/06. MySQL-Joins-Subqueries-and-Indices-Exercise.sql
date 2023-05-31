@@ -118,7 +118,7 @@ limit 5;
 
 # 15
 use geography;
-select country_code, currency_code, count(*) as `currency_usage`
+select country_code, currency_code, count(*) as currency_usage
 from countries as c
 group by c.continent_code, c.currency_code
 having currency_usage > 1
