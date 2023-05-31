@@ -43,12 +43,15 @@ from employees e
 where hire_date > 1999 / 01 / 01
 order by hire_date asc;
 
+use soft_uni
 # 7
-select e.employee_id, first_name, p.name as project_name
-from employees e
-         join employees_projects ep on ep.employee_id = e.employee_id
-         join projects p on p.project_id = ep.project_id and p.start_date > 2002 - 08 - 13 and p.end_date is null
-order by first_name, project_name
+select e.employee_id, e.first_name, p.name as project_name
+from employees as e
+         join employees_projects as ep on e.employee_id = ep.employee_id
+         join projects as p on ep.project_id = p.project_id
+where DATE(p.start_date) > '2002-08-13'
+  and p.end_date is null
+order by e.first_name, p.name
 limit 5;
 
 # 8
@@ -84,6 +87,7 @@ from (select avg(salary) as avg_salary
       from employees
       group by department_id) as min_average_salary;
 
+
 # 12
 select c.country_code, m.mountain_range, p.peak_name, p.elevation
 from countries c
@@ -102,7 +106,7 @@ where c.country_code in ('US', 'RU', 'BG')
 group by c.country_code
 order by mountain_range desc;
 
-# 14
+# 14 - we can do with one join else if we use continent code = 'AF' instead of 'Africa'
 select country_name, r.river_name
 from countries c
          join continents con on con.continent_code = c.continent_code
@@ -111,6 +115,53 @@ from countries c
 where con.continent_name = 'Africa'
 order by country_name asc
 limit 5;
+
+# 15
+use geography;
+select country_code, currency_code, count(*) as `currency_usage`
+from countries as c
+group by c.continent_code, c.currency_code
+having currency_usage > 1
+   and currency_usage = (select count(*) as count_of_currencies
+                         from countries as c2
+                         where c2.continent_code = c.continent_code
+                         group by c2.currency_code
+                         order by count_of_currencies desc
+                         limit 1)
+order by c.continent_code, c.currency_code;
+
+
+select count(*) as count_of_currencies
+from countries as c2
+where c2.continent_code = c2.continent_code
+group by c2.currency_code
+order by count_of_currencies desc
+limit 1;
+
+
+# select continent_code, currency_code, count(currency_code)
+# from countries
+# group by currency_code;
+#
+# select continent_code, currency_code, max(count_currency) as currency_usage
+# from (select c.continent_code,
+#              c.currency_code,
+#              count(*) as count_currency
+#       from countries AS c
+#       group by c.continent_code, c.currency_code
+#       having count_currency > 1) as cont
+# group by continent_code
+# order by continent_code;
+#
+# select c.continent_code,
+#        c.currency_code,
+#        count(continent_code) as count_currency
+# from countries AS c
+# group by c.continent_code, c.currency_code;
+
+# show variables like 'sql_mode';
+# set sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+
 
 # 16
 select count(c.country_code)
@@ -128,5 +179,5 @@ from countries c
          join countries_rivers cr on cr.country_code = c.country_code
          join rivers r on cr.river_id = r.id
 group by country_name
-order by higest_peak_elevation desc ,longest_river_length desc , country_name
+order by higest_peak_elevation desc, longest_river_length desc, country_name
 limit 5;
