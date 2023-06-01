@@ -121,3 +121,36 @@ select *
 from employees
 where employee_id = 17;
 call usp_raise_salary_by_id(17);
+
+# 4
+create table deleted_employees
+(
+    employee_id   int not null primary key,
+    first_name    varchar(50),
+    last_name     varchar(50),
+    middle_name   varchar(50),
+    job_title     varchar(50),
+    department_id int,
+    salary        decimal(10, 2)
+);
+delimiter $$
+create trigger tr_after_delete_employees
+    after delete
+    on employees
+    for each row
+begin
+    insert into deleted_employees
+    values (old.employee_id,
+            old.first_name,
+            old.last_name,
+            old.middle_name,
+            old.job_title,
+            old.department_id,
+            old.salary);
+end $$
+delimiter ;
+;
+
+update employees_projects set employee_id = 2 where employee_id = 1;
+delete from employees where employee_id = 1;
+select * from deleted_employees;
