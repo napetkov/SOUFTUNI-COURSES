@@ -125,7 +125,7 @@ call usp_raise_salary_by_id(17);
 # 4
 create table deleted_employees
 (
-    employee_id   int not null primary key,
+    employee_id   int not null auto_increment primary key,
     first_name    varchar(50),
     last_name     varchar(50),
     middle_name   varchar(50),
@@ -134,14 +134,13 @@ create table deleted_employees
     salary        decimal(10, 2)
 );
 delimiter $$
-create trigger tr_after_delete_employees
+create trigger tr_deleted_employees
     after delete
     on employees
     for each row
 begin
-    insert into deleted_employees
-    values (old.employee_id,
-            old.first_name,
+    insert into deleted_employees(first_name,last_name,middle_name,job_title,department_id,salary)
+    values (old.first_name,
             old.last_name,
             old.middle_name,
             old.job_title,
@@ -151,6 +150,13 @@ end $$
 delimiter ;
 ;
 
-update employees_projects set employee_id = 2 where employee_id = 1;
-delete from employees where employee_id = 1;
-select * from deleted_employees;
+update employees_projects
+set employee_id = 3
+where employee_id = 2;
+
+delete
+from employees
+where employee_id = 2;
+
+select *
+from deleted_employees;
