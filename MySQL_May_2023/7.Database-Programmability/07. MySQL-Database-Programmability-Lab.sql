@@ -90,9 +90,34 @@ delimiter $$
 create procedure usp_raise_salaries(department_name varchar(50))
 begin
     update employees as e
-    join departments as d on d.department_id = e.department_id
+        join departments as d on d.department_id = e.department_id
     set salary = salary * 1.05
     where d.name = department_name;
 end $$
 delimiter ;
 ;
+
+
+# Transactions
+delimiter $$
+create procedure usp_raise_salary_by_id(id int)
+begin
+    start transaction;
+    if ((select count(*) from employees where employee_id = id) <> 1)
+    then
+        rollback;
+    else
+        update employees
+        set salary = salary * 1.05
+        where employee_id = id;
+        commit;
+    end if;
+end $$
+
+delimiter ;
+;
+
+select *
+from employees
+where employee_id = 17;
+call usp_raise_salary_by_id(17);
