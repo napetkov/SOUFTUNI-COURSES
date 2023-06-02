@@ -54,7 +54,7 @@ call usp_get_employees_from_town('Sofia');
 
 # 5
 delimiter $$
-create function ufn_get_salary_level(employee_salary decimal(9, 4))
+create function ufn_get_salary_level(employee_salary decimal(10, 2))
     returns varchar(10)
     deterministic
 begin
@@ -71,12 +71,59 @@ begin
     else
         set result = 'High';
     end if;
-    return result ;
+    return result;
 end $$
 delimiter ;
 ;
 
-select ufn_get_salary_level(13500.00) as salary_level;
+select first_name,
+       ufn_get_salary_level((select salary from employees as e where em.employee_id = e.employee_id)) as salary_level
+from employees as em;
+
+# 6
+delimiter $$
+create procedure usp_get_employees_by_salary_level(salary_level varchar(20))
+begin
+    select first_name, last_name
+    from employees as e
+    where ufn_get_salary_level(e.salary) = salary_level
+    order by first_name desc, last_name desc;
+end $$
+delimiter ;
+;
+
+call usp_get_employees_by_salary_level('Average');
+
+# 7
+delimiter $$
+create function ufn_is_word_comprised(set_of_letters varchar(50), word varchar(50))
+    returns int
+    deterministic
+begin
+    declare i int default 1;
+    declare current_letter char(1);
+    declare is_comprised int default 1;
+
+    word_loop:
+    while i <= length(set_of_letters)
+        do
+            set current_letter = substring(word, i, 1);
+
+            if locate(current_letter, set_of_letters) = 0 then
+                set is_comprised = 0;
+                leave word_loop;
+            end if;
+
+            set i = i + 1;
+        end while;
+return is_comprised;
+    end $$
+delimiter ;
+;
+
+select ufn_is_word_comprised('oistmiahf', 'Sofia') as result;
+select ufn_is_word_comprised('oistmiahf', 'halves') as result;
+
 
 
 
