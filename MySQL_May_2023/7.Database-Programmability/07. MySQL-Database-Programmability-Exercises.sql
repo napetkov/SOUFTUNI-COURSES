@@ -116,14 +116,131 @@ begin
 
             set i = i + 1;
         end while;
-return is_comprised;
-    end $$
+    return is_comprised;
+end $$
 delimiter ;
 ;
 
 select ufn_is_word_comprised('oistmiahf', 'Sofia') as result;
 select ufn_is_word_comprised('oistmiahf', 'halves') as result;
 
+# 8
+delimiter $$
+create procedure usp_get_holders_full_name()
+begin
+    select concat(first_name, ' ', last_name) as full_name
+    from account_holders
+    order by full_name;
 
+end $$
+delimiter ;
+;
 
+call usp_get_holders_full_name();
 
+# 9
+delimiter $$
+create function ufn_calc_sum_of_balance(holder_id int)
+    returns decimal(10, 4)
+    deterministic
+begin
+    return (select sum(balance) as sum_balamnce
+            from accounts as a
+            where a.account_holder_id = holder_id
+            group by account_holder_id);
+end $$
+delimiter ;
+;
+
+delimiter $$
+create procedure usp_get_holders_with_balance_higher_than(border_of_money decimal(10, 4))
+begin
+    select first_name, last_name
+    from account_holders as ah
+             join accounts a on ah.id = a.account_holder_id
+    where ufn_calc_sum_of_balance(a.account_holder_id) > border_of_money
+    group by account_holder_id
+    order by account_holder_id;
+end $$
+delimiter ;
+;
+
+call usp_get_holders_with_balance_higher_than(900000);
+
+# 10
+delimiter $$
+create function ufn_calculate_future_value(initial_sum decimal(10, 4), interest double, years int)
+    returns decimal(10, 4)
+    deterministic
+begin
+    declare future_value decimal(10, 4);
+    set future_value = initial_sum * (pow((1 + interest), years));
+    return future_value;
+end $$
+delimiter ;
+;
+
+select ufn_calculate_future_value(1000, 0.5, 5);
+
+# 11
+delimiter $$
+create procedure usp_calculate_future_value_for_account(id_account int, interest_rate decimal(10, 4))
+begin
+    select a.id                                                    as account_id,
+           ah.first_name,
+           ah.last_name,
+           a.balance                                               as current_balance,
+           ufn_calculate_future_value(a.balance, interest_rate, 5) as balance_in_5_years
+    from accounts as a
+             join account_holders ah on a.account_holder_id = ah.id
+    where a.id = id_account;
+end $$
+delimiter ;
+;
+
+call usp_calculate_future_value_for_account(12, 0.0001);
+
+# 12
+delimiter $$
+create procedure usp_deposit_money(account_id int, money_amount decimal(10, 4))
+begin
+    start transaction;
+    if (money_amount < 0)
+    then
+        rollback;
+    else
+        update accounts as a
+        set a.balance = a.balance + money_amount
+        where a.id = account_id;
+        commit;
+    end if;
+end $$
+delimiter ;
+;
+
+call usp_deposit_money(1, 10);
+
+# 13
+delimiter $$
+create procedure usp_withdraw_money(account_id int, money_amount decimal(10, 4))
+begin
+    declare amount_withdraw decimal(10, 4) default 0;
+    set amount_withdraw = (select balance from accounts as a where a.id = account_id) - money_amount;
+    start transaction;
+    if
+        (money_amount < 0) and (amount_withdraw < 0)
+    then
+        rollback;
+    else
+        update accounts as a
+        set a.balance = a.balance - money_amount
+        where a.id = account_id;
+        commit;
+    end if;
+end $$
+delimiter ;
+;
+
+call usp_withdraw_money(1,10);
+
+select * from accounts;
