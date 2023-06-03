@@ -1,3 +1,6 @@
+set global log_bin_trust_function_creators = 1;
+set sql_safe_updates = 0;
+
 # 1
 delimiter $$
 create procedure usp_get_employees_salary_above_35000()
@@ -28,7 +31,7 @@ create procedure usp_get_towns_starting_with(starting_string varchar(20))
 begin
     select name as town_name
     from towns as t
-    where lower(t.name) like concat(starting_string, '%%')
+    where lower(t.name) like concat(starting_string, '%')
     order by town_name;
 end $$
 delimiter ;
@@ -120,9 +123,18 @@ begin
 end $$
 delimiter ;
 ;
+# 7-2 with REGEXP
+delimiter $$
+create function ufn_is_word_comprised2(set_of_letters varchar(50), word varchar(50))
+    returns int
+    deterministic
+begin
+    return word regexp concat('^[',set_of_letters,']+$');
+end $$
+delimiter ;
 
-select ufn_is_word_comprised('oistmiahf', 'Sofia') as result;
-select ufn_is_word_comprised('oistmiahf', 'halves') as result;
+select ufn_is_word_comprised2('oistmiahf', 'Sofia') as result;
+select ufn_is_word_comprised2('oistmiahf', 'halves') as result;
 
 # 8
 delimiter $$
@@ -224,11 +236,14 @@ call usp_deposit_money(1, 10);
 delimiter $$
 create procedure usp_withdraw_money(account_id int, money_amount decimal(10, 4))
 begin
-    declare amount_withdraw decimal(10, 4) default 0;
+    declare amount_withdraw decimal(10, 4);
     set amount_withdraw = (select balance from accounts as a where a.id = account_id) - money_amount;
     start transaction;
     if
-        (money_amount < 0) and (amount_withdraw < 0)
+        (money_amount <= 0)
+    then
+        rollback ;
+    elseif (amount_withdraw < 0)
     then
         rollback;
     else
@@ -241,6 +256,7 @@ end $$
 delimiter ;
 ;
 
-call usp_withdraw_money(1,10);
+call usp_withdraw_money(2, 3);
 
-select * from accounts;
+select *
+from accounts;
