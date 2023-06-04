@@ -129,7 +129,7 @@ create function ufn_is_word_comprised2(set_of_letters varchar(50), word varchar(
     returns int
     deterministic
 begin
-    return word regexp concat('^[',set_of_letters,']+$');
+    return word regexp concat('^[', set_of_letters, ']+$');
 end $$
 delimiter ;
 
@@ -171,6 +171,7 @@ begin
     from account_holders as ah
              join accounts a on ah.id = a.account_holder_id
     where ufn_calc_sum_of_balance(a.account_holder_id) > border_of_money
+#     having sum(a.balance) > border_of_money
     group by account_holder_id
     order by account_holder_id;
 end $$
@@ -234,9 +235,9 @@ call usp_deposit_money(1, 10);
 
 # 13
 delimiter $$
-create procedure usp_withdraw_money(account_id int, money_amount decimal(10, 4))
+create procedure usp_withdraw_money(account_id int, money_amount decimal(19, 4))
 begin
-    declare amount_withdraw decimal(10, 4);
+    declare amount_withdraw decimal(19, 4);
     set amount_withdraw = (select balance from accounts as a where a.id = account_id) - money_amount;
     start transaction;
     if
@@ -258,5 +259,73 @@ delimiter ;
 
 call usp_withdraw_money(2, 3);
 
-select *
-from accounts;
+# 14
+delimiter $$
+create procedure usp_transfer_money(from_account_id int, to_account_id int, amount decimal(19, 4))
+begin
+    if (amount > 0)
+        and (select id from accounts where id = from_account_id) is not null
+        and (select id from accounts where id = to_account_id) is not null
+        and (from_account_id != to_account_id)
+        and (select balance from accounts where id = from_account_id) >= amount
+    then
+        start transaction;
+
+        update accounts as a
+        set a.balance = a.balance - amount
+        where a.id = from_account_id;
+
+        update accounts as a
+        set a.balance = a.balance + amount
+        where a.id = to_account_id;
+        commit;
+    end if;
+end $$
+delimiter ;
+
+call usp_transfer_money(1, 2, 3.12);
+
+# 15
+create table logs
+(
+    log_id     int primary key auto_increment,
+    account_id int            not null,
+    old_sum    decimal(19, 4) not null,
+    new_sum    decimal(19, 4) not null
+);
+
+create trigger trigger_balance_update
+    after update
+    on accounts
+    for each row
+begin
+    if old.balance != new.balance
+    then
+        insert into logs(account_id, old_sum, new_sum)
+        values (old.id, old.balance, new.balance);
+    end if;
+end;
+
+# 16
+create table notification_emails
+(
+    id        int primary key auto_increment not null,
+    recipient int                            not null,
+    subject   varchar(100)                   not null,
+    body      text                           not null
+);
+
+create trigger tr_notification_email_creation
+    after insert
+    on logs
+    for each row
+begin
+    insert into notification_emails(recipient, subject, body)
+    values (new.account_id,
+            concat_ws(' ', 'Balance change for account:', new.account_id),
+            concat(
+                    'On', ' ',
+                    date_format(now(), '%b %d %Y at %h:%i:%s %p'), ' ',
+                    'your balance was changed from', ' ',
+                    new.old_sum, ' ', 'to', ' ', new.new_sum, '.'));
+end;
