@@ -139,21 +139,21 @@ order by count desc, p.name asc;
 show variables like 'sql_mode'
 set sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-select id,
-       capacity,
-       count_clients,
-       (case
-            when count_clients > capacity then 'Extra seats'
-            when count_clients = capacity then 'Full'
-            when count_clients < capacity then 'Free seats'
-           end)
-           as availability
-from (select t.id, t.capacity, count(oc.client_id) as count_clients
+
+select t.id,
+       t.capacity,
+       count(oc.client_id) as count_clients,
+    (case
+                when count(oc.client_id) > capacity then 'Extra seats'
+                when count(oc.client_id) = capacity then 'Full'
+                when count(oc.client_id) < capacity then 'Free seats'
+               end)
+               as availability
       from tables as t
                join orders o on t.id = o.table_id
                join orders_clients oc on o.id = oc.order_id
       where t.floor = 1
-      group by (t.id)) as count_of_sit_people
+      group by t.id
 order by id desc;
 
 # 10
