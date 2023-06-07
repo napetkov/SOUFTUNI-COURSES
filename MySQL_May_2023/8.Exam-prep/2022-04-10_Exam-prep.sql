@@ -106,23 +106,48 @@ from countries as c
 where m.id is null;
 
 # 5
-select id, name, continent, currency from countries as c
-order by currency desc , id;
+select id, name, continent, currency
+from countries as c
+order by currency desc, id;
 
 # 6
-select m.id, m.title, mai.runtime, mai.budget, mai.release_date from movies_additional_info as mai
-        join movies m on mai.id = m.movie_info_id
+select m.id, m.title, mai.runtime, mai.budget, mai.release_date
+from movies_additional_info as mai
+         join movies m on mai.id = m.movie_info_id
 where year(release_date) between 1996 and 1999
 order by runtime, id
 limit 20;
 
 # 7
-select
-    concat_ws(' ', a.first_name, a.last_name) as full_name,
-    concat(reverse(a.last_name), char_length(a.last_name), '@cast.com') as email,
-    (2022 - year(a.birthdate)) as age,
-    a.height
-    from actors as a
-left join movies_actors as ma on ma.actor_id = a.id
+select concat_ws(' ', a.first_name, a.last_name)                           as full_name,
+       concat(reverse(a.last_name), char_length(a.last_name), '@cast.com') as email,
+       (2022 - year(a.birthdate))                                          as age,
+       a.height
+from actors as a
+         left join movies_actors as ma on ma.actor_id = a.id
 where ma.movie_id is null
 order by height;
+
+# 9
+select c.name      as name,
+       count(m.id) as movies_count
+from countries as c
+         join movies m on c.id = m.country_id
+group by c.name
+having movies_count >= 7
+order by name desc;
+
+# 9
+select m.title,
+      ( case
+           when rating <= 4 then 'poor'
+           when rating > 4 and rating <= 7 then 'good'
+           else 'excellent'
+           end) as rating,
+      if (mai.has_subtitles, 'english', '-'),
+       mai.budget
+from movies as m
+         join movies_additional_info mai on m.movie_info_id = mai.id
+order by budget desc ;
+
+# 10
