@@ -159,7 +159,7 @@ delimiter ;
 
 # 11
 delimiter $$
-create procedure udp_reduce_price(category_name VARCHAR(50))
+create procedure udp_reduce_price(category_name varchar(50))
 begin
     update products as p
         join reviews r on r.id = p.review_id
@@ -172,8 +172,8 @@ end $$
 delimiter ;
 
 
-call udp_reduce_price('Air conditioners and heaters');
+call udp_reduce_price('Phones and tablets');
 
 select *
 from products
-where id = 4;
+where products.category_id = 1;
