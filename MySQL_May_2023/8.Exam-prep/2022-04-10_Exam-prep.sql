@@ -139,15 +139,49 @@ order by name desc;
 
 # 9
 select m.title,
-      ( case
-           when rating <= 4 then 'poor'
-           when rating > 4 and rating <= 7 then 'good'
-           else 'excellent'
+       (case
+            when rating <= 4 then 'poor'
+            when rating > 4 and rating <= 7 then 'good'
+            else 'excellent'
            end) as rating,
-      if (mai.has_subtitles, 'english', '-'),
+       if(mai.has_subtitles, 'english', '-'),
        mai.budget
 from movies as m
          join movies_additional_info mai on m.movie_info_id = mai.id
-order by budget desc ;
+order by budget desc;
 
 # 10
+delimiter //
+create function udf_actor_history_movies_count(full_name VARCHAR(50))
+    returns int
+deterministic
+    begin
+    return (select count(m.id)
+    from movies as m
+             join movies_actors ma on m.id = ma.movie_id
+             join actors a on ma.actor_id = a.id
+             join genres_movies gm on m.id = gm.movie_id
+             join genres g on gm.genre_id = g.id
+    where g.name = 'History'
+      and concat(a.first_name, ' ', a.last_name) = full_name);
+end //
+delimiter ;
+
+# 11
+delimiter //
+create procedure udp_award_movie(movie_title VARCHAR(50))
+begin
+    update actors as a
+        join movies_actors as ma on a.id = ma.actor_id
+        join movies as m on m.id = ma.movie_id
+    set awards = awards + 1
+    where m.title = movie_title;
+end //
+delimiter ;
+
+select concat(a.first_name,' ', a.last_name), awards from movies as m
+         join movies_actors ma on m.id = ma.movie_id
+         join actors a on a.id = ma.actor_id
+where title = 'Tea For Two';
+
+call udp_award_movie('Tea For Two')
