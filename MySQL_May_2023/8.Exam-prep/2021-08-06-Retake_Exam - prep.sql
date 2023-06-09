@@ -145,18 +145,62 @@ where substring(g.name, char_length(g.name) - 1) = 2
 order by quarter;
 
 # 9
-select
-    g.name,
-    IF(g.budget < 50000, 'Normal budget', 'Insufficient budget') as budget_level,
-    t.name,
-    a.name
+select g.name,
+       IF(g.budget < 50000, 'Normal budget', 'Insufficient budget') as budget_level,
+       t.name,
+       a.name
 from games as g
          join teams as t on g.team_id = t.id
          join offices o on o.id = t.office_id
          join addresses a on a.id = o.address_id
          left join games_categories gc on g.id = gc.game_id
 where g.release_date is null
-   and gc.category_id is null
+  and gc.category_id is null
 order by g.name;
 
-# 10 
+# select g.name,
+#        if(g.budget < 50000, 'Normal budget', 'Insufficient budget') as budget_level,
+#        t.name                                                       as team_name,
+#        a.name                                                       as address_name
+# from games as g
+#          left join teams as t on t.id = g.team_id
+#          left join games_categories as gc on gc.game_id = g.id
+#          left join categories as c on c.id = gc.category_id
+#          join offices as o on o.id = t.office_id
+#          join addresses as a on a.id = o.address_id
+# where g.release_date is null
+#   AND c.name is null
+# order by g.name;
+
+
+# 10
+delimiter //
+create function udf_game_info_by_name(game_name VARCHAR(20))
+    returns text
+begin
+    return (select concat_ws(' ', 'The', g.name, 'is developed by a', t.name, 'in an office with an address', a.name)
+            from games as g
+                     join teams t on t.id = g.team_id
+                     join offices o on o.id = t.office_id
+                     join addresses a on a.id = o.address_id
+            where g.name = game_name);
+end //
+delimiter ;
+
+# 11
+delimiter //
+create procedure udp_update_budget(min_game_rating float)
+begin
+    update games as g
+        left join games_categories gc on g.id = gc.game_id
+    set g.budget = g.budget + 100000,
+        g.release_date = date_add(g.release_date, interval 1 year)
+       where category_id is null
+      and rating > min_game_rating
+      and g.release_date is not null;
+end //
+delimiter ;
+
+call udp_update_budget(8);
+SELECT SUM(`budget`)
+FROM `games`;
