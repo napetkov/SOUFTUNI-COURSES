@@ -115,14 +115,48 @@ where o.website is not null
 order by t.name, a.name;
 
 # 7
-select
-    c.name as name,
-    count(g.id) as games_count,
-    round(avg(g.budget),2) as avg_budget,
-    max(g.rating) as max_rating
+select c.name                  as name,
+       count(g.id)             as games_count,
+       round(avg(g.budget), 2) as avg_budget,
+       max(g.rating)           as max_rating
 from categories as c
          join games_categories as gc on c.id = gc.category_id
          join games as g on gc.game_id = g.id
 group by (c.name)
 having max_rating >= 9.5
-order by games_count desc, name ;
+order by games_count desc, name;
+
+# 8
+select g.name,
+       g.release_date,
+       concat(substring(g.description, 1, 10), '...') as summary,
+       case
+           when month(g.release_date) between 1 and 3 then 'Q1'
+           when month(g.release_date) between 4 and 6 then 'Q2'
+           when month(g.release_date) between 7 and 9 then 'Q3'
+           when month(g.release_date) between 10 and 12 then 'Q4'
+           end                                        as quarter,
+       t.name
+from games as g
+         join teams t on t.id = g.team_id
+where substring(g.name, char_length(g.name) - 1) = 2
+  and year(g.release_date) = 2022
+  and month(g.release_date) % 2 = 0
+order by quarter;
+
+# 9
+select
+    g.name,
+    IF(g.budget < 50000, 'Normal budget', 'Insufficient budget') as budget_level,
+    t.name,
+    a.name
+from games as g
+         join teams as t on g.team_id = t.id
+         join offices o on o.id = t.office_id
+         join addresses a on a.id = o.address_id
+         left join games_categories gc on g.id = gc.game_id
+where g.release_date is null
+   and gc.category_id is null
+order by g.name;
+
+# 10 
