@@ -110,3 +110,35 @@ from employees as e
 where manager_id is not null
   and salary >= 6000;
 
+# 5
+select first_name,
+       middle_name,
+       last_name,
+       salary,
+       hire_date
+from employees
+order by hire_date desc;
+
+# 6
+select p.name                                         as product_name,
+       price,
+       best_before,
+       concat(substring(p.description, 1, 10), '...') as short_description,
+       url
+from products as p
+         join pictures pic on pic.id = p.picture_id
+where char_length(p.description) > 100
+  and price > 20
+  and year(pic.added_on) < 2019
+order by p.price desc
+
+# 7
+select
+    s.name,
+    count(ps.product_id) as product_count,
+    round(avg(p.price), 2)as avg
+from stores as s
+        left join products_stores ps on s.id = ps.store_id
+        left join products p on ps.product_id = p.id
+group by s.id
+order by product_count desc ,avg desc , s.id;
