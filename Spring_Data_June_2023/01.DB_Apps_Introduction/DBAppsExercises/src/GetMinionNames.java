@@ -14,6 +14,7 @@ public class GetMinionNames {
                     "where mv.villain_id = ?; ";
     private static final String PRINT_FORMAT_VILLAINS_NAME = "Villain: %s %n";
     private static final String PRINT_MINIONS_NAMES_AND_AGES = "%d. %s %d %n";
+    private static final String PRINT_FORMAT_VILLAIN_NOT_EXIST = "No villain with ID %d exists in the database.";
     private static final String COLUMN_LABEL_VILLAINS_NAME = "villains_name";
     private static final String COLUMN_LABEL_MINION_NAME= "minion_name";
     private static final String COLUMN_LABEL_MINION_AGE = "minion_age";
@@ -30,15 +31,20 @@ public class GetMinionNames {
 
         final ResultSet result = statement.executeQuery();
 
+        if(!result.next()){
+            System.out.printf(PRINT_FORMAT_VILLAIN_NOT_EXIST,villainId);
+        }
+
         print(result);
 
+        connection.close();
     }
 
     private static void print(ResultSet result) throws SQLException {
         int counterOfMinions = 1;
         boolean isPrintedVillainsName = false;
 
-        while (result.next()) {
+              while (result.next()) {
 
             final String villainsName = result.getString(COLUMN_LABEL_VILLAINS_NAME);
 
@@ -55,5 +61,6 @@ public class GetMinionNames {
 
             counterOfMinions++;
         }
+
     }
 }
