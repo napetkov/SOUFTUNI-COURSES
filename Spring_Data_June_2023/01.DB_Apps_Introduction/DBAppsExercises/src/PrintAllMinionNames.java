@@ -19,7 +19,7 @@ public class PrintAllMinionNames {
         }
 
         // half count of minions to not duplicate records!
-        final int halfCountOfMinions = minionCount / 2; 
+        final int halfCountOfMinions = minionCount / 2;
 
         while (minionStart <= halfCountOfMinions) {
             resultSet.absolute(minionStart);
