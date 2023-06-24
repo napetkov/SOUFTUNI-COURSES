@@ -54,6 +54,8 @@ public class User {
         return registrationDate;
     }
 
+    public User(){};
+
     public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
@@ -63,5 +65,16 @@ public class User {
         this.password = password;
         this.age = age;
         this.registrationDate = registrationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", registrationDate=" + registrationDate +
+                '}';
     }
 }

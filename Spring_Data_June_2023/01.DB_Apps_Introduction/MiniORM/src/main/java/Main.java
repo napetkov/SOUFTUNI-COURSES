@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IllegalAccessException {
 
         Connector.createConnection("root","gebruX3r2107","soft_uni");
 
