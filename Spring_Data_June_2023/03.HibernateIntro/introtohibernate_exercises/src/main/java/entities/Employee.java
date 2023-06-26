@@ -2,7 +2,6 @@ package entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -127,5 +126,13 @@ public class Employee {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getPrintFormatFullNameDepNameAndSalary(){
+        return String.format("%s %s from %s - $%.2f",
+                this.firstName,
+                this.lastName,
+                this.department.getName(),
+                this.salary) + System.lineSeparator();
     }
 }
