@@ -1,9 +1,12 @@
 package entities;
 
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "employees")
@@ -128,11 +131,24 @@ public class Employee {
         this.projects = projects;
     }
 
-    public String getPrintFormatFullNameDepNameAndSalary(){
-        return String.format("%s %s from %s - $%.2f",
+    public void printFormatFullNameDepNameAndSalary() {
+        System.out.printf("%s %s from %s - $%s\n",
                 this.firstName,
                 this.lastName,
                 this.department.getName(),
-                this.salary) + System.lineSeparator();
+                this.salary);
+    }
+
+    public void printFormatEmployeeWithProject(){
+        System.out.printf("%s %s - %s \n%s",getFirstName(),getLastName(),getJobTitle(),
+                projects.stream()
+                        .map(Project::getName)
+                        .sorted()
+                        .collect(Collectors.joining(System.lineSeparator())));
+
+    }
+
+    public void printFullNameSalaryAfterIncreasing(){
+        System.out.printf("%s %s ($%.2f)",firstName,lastName,salary);
     }
 }

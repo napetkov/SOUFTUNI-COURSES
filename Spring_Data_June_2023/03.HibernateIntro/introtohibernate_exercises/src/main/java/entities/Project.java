@@ -70,4 +70,11 @@ public class Project {
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
     }
+
+    public void printFormatLatest10Projects(){
+        System.out.printf("Project name: %s\n" +
+                "   Project Description: %s\n" +
+                "   Project Start Date:%s\n" +
+                "   Project End Date: %s\n\n",name,description,startDate,endDate);
+    }
 }

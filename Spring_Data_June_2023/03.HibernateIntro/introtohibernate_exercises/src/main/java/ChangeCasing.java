@@ -7,7 +7,7 @@ import java.util.List;
 public class ChangeCasing {
     public static void main(String[] args) {
 
-        EntityManager entityManager = Utils.createEntityManager("soft_uni");
+        EntityManager entityManager = Utils.createEntityManager();
 
         entityManager.getTransaction().begin();
 

@@ -49,4 +49,8 @@ public class Address {
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
     }
+
+    public void printFormatAddressesWithEmployeeCount(){
+        System.out.printf("%s, %s - %d employees\n",getText(),getTown(),getEmployees().size());
+    }
 }

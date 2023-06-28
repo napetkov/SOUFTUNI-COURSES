@@ -3,9 +3,9 @@ import javax.persistence.Persistence;
 
 public class Utils {
 
-    static EntityManager createEntityManager(String database){
+    static EntityManager createEntityManager(){
 
-    return Persistence.createEntityManagerFactory(database).createEntityManager();
+    return Persistence.createEntityManagerFactory("soft_uni").createEntityManager();
 
     }
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ContainsEmployees {
     public static void main(String[] args) {
-        final EntityManager entityManager = Utils.createEntityManager("soft_uni");
+        final EntityManager entityManager = Utils.createEntityManager();
         final Scanner scanner = new Scanner(System.in);
         final String fullName = scanner.nextLine();
 

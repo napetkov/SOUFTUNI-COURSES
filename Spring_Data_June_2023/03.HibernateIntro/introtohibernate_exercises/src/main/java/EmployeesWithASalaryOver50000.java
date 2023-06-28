@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 public class EmployeesWithASalaryOver50000 {
     public static void main(String[] args) {
-        EntityManager entityManager = Utils.createEntityManager("soft_uni");
+        EntityManager entityManager = Utils.createEntityManager();
 
         entityManager.getTransaction().begin();
 
