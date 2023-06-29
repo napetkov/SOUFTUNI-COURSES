@@ -151,4 +151,9 @@ public class Employee {
     public void printFullNameSalaryAfterIncreasing(){
         System.out.printf("%s %s ($%.2f)",firstName,lastName,salary);
     }
+    public void printFullNameJobTitleSalary(){
+        System.out.printf("%s %s - %s - ($%.2f)\n",firstName,lastName,jobTitle,salary);
+    }
+
+
 }
