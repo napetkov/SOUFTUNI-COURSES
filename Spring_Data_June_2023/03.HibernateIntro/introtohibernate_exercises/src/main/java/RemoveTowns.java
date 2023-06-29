@@ -8,22 +8,21 @@ import java.util.Scanner;
 
 public class RemoveTowns {
     private static final String PRINT_FORMAT_DELETED_TOWN = "%d address in %s deleted";
-
     public static void main(String[] args) {
 
         EntityManager entityManager = Utils.createEntityManager();
         String givenTown = new Scanner(System.in).nextLine();
 
-//        try {
+        try {
         entityManager.getTransaction().begin();
 
         final Town townForDelete = entityManager.createQuery("FROM Town WHERE name = : givenTown", Town.class)
                 .setParameter("givenTown", givenTown)
                 .getSingleResult();
 
-        setEmployeeAddressToNull(entityManager, givenTown);
+        setEmployeeAddressToNull(entityManager, townForDelete.getId());
 
-        final List<Address> addressesOfTownForDelete = entityManager.createQuery("FROM Address where id = : townId", Address.class)
+        final List<Address> addressesOfTownForDelete = entityManager.createQuery("FROM Address where town.id = : townId", Address.class)
                 .setParameter("townId", townForDelete.getId())
                 .getResultList();
 
@@ -31,23 +30,25 @@ public class RemoveTowns {
 
         addressesOfTownForDelete.forEach(entityManager::remove);
 
+        System.out.println();
+
         entityManager.remove(townForDelete);
 
         System.out.printf(PRINT_FORMAT_DELETED_TOWN, sizeOfTownForDelete, townForDelete.getName());
         entityManager.getTransaction().commit();
-//        }catch (Exception e){
-//            System.out.println("There is no commitment and now deleted town."+
-//                    System.lineSeparator()
-//                    + e.getMessage());
-//        }
+        }catch (Exception e){
+            System.out.println("There is no commitment and now deleted town."+
+                    System.lineSeparator()
+                    + e.getMessage());
+        }
 
         entityManager.close();
 
     }
 
-    private static void setEmployeeAddressToNull(EntityManager entityManager, String townName) {
-        List<Employee> employees = entityManager.createQuery("FROM Employee where Employee.address.town.name= : givenTown", Employee.class)
-                .setParameter("givenTown", "townName")
+    private static void setEmployeeAddressToNull(EntityManager entityManager, int townId) {
+        List<Employee> employees = entityManager.createQuery("FROM Employee where address.town.id = : townId", Employee.class)
+                .setParameter("townId", townId)
                 .getResultList();
 
         employees.forEach(employee -> {
@@ -56,6 +57,6 @@ public class RemoveTowns {
             entityManager.persist(employee);
         });
 
-        entityManager.flush();
+
     }
 }
