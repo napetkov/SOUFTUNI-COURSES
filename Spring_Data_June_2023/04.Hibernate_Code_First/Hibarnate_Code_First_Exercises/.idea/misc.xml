@@ -6,7 +6,15 @@
       <list>
         <option value="$PROJECT_DIR$/Gringotts/pom.xml" />
         <option value="$PROJECT_DIR$/Sales/pom.xml" />
+        <option value="$PROJECT_DIR$/BillsPaymentSystem/pom.xml" />
+        <option value="$PROJECT_DIR$/../BillsPaymentSystem/pom.xml" />
+        <option value="$PROJECT_DIR$/FootballBetting/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/BillsPaymentSystem/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager">
