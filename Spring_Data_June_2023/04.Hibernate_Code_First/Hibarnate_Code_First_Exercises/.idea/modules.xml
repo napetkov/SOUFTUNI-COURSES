@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BillsPaymentSystem.iml" filepath="$PROJECT_DIR$/BillsPaymentSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/FootballBetting.iml" filepath="$PROJECT_DIR$/FootballBetting.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hibarnate_Code_First_Exercises.iml" filepath="$PROJECT_DIR$/Hibarnate_Code_First_Exercises.iml" />
     </modules>

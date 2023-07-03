@@ -7,11 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Gringotts" />
-        <module name="BillsPaymentSystem" />
         <module name="FootballBetting" />
         <module name="Sales" />
         <module name="Hospital" />
         <module name="UniversitySystem" />
+      </profile>
+      <profile name="Annotation profile for BillsPaymentSystem" enabled="true">
+        <sourceOutputDir name="../../BillsPaymentSystem/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../BillsPaymentSystem/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="BillsPaymentSystem" />
       </profile>
     </annotationProcessing>
   </component>
