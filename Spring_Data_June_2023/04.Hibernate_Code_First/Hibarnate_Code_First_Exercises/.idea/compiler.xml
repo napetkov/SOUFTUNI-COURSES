@@ -10,6 +10,7 @@
         <module name="BillsPaymentSystem" />
         <module name="FootballBetting" />
         <module name="Sales" />
+        <module name="UniversitySystem" />
       </profile>
     </annotationProcessing>
   </component>
