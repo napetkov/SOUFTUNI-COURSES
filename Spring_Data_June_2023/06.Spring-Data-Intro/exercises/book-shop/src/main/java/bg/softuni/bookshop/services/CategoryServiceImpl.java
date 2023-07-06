@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Set<Category> getRandomCategories() {
         HashSet<Category> categories = new HashSet<>();
 
-        for (int i = 0; i < categoryRepository.count() / 2; i++) {
+        for (int i = 0; i < 1 ; i++) {
             categories.add(getRandomCategory());
         }
         return categories;

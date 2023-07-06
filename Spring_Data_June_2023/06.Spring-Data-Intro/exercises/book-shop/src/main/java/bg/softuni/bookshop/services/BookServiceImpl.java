@@ -5,10 +5,14 @@ import bg.softuni.bookshop.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+
 @Service
 public class BookServiceImpl implements BookService {
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
     public BookServiceImpl(BookRepository bookRepository) {
@@ -24,4 +28,23 @@ public class BookServiceImpl implements BookService {
     public void seedBooks(List<Book> books) {
         bookRepository.saveAllAndFlush(books);
     }
+
+    @Override
+    public List<Book> getAllBooksAfterGivenYear(LocalDate date) {
+        List<Book> allBooksAfterGivenYear = this.bookRepository.findAllByReleaseDateAfter(date).get();
+
+        System.out.println(allBooksAfterGivenYear.stream().map(Book::getTitle).collect(Collectors.joining("\n")));
+
+        return allBooksAfterGivenYear;
+    }
+
+    @Override
+    public List<Book> getAllBooksBeforeGivenYear(LocalDate date) {
+
+        return this.bookRepository
+                .findAllByReleaseDateBefore(date)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+
 }

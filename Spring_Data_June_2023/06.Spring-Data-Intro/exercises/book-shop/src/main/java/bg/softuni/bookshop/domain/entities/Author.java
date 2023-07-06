@@ -19,6 +19,14 @@ public class Author extends BaseEntity{
     @Column(name = "last_name",nullable = false)
     private String lastName;
 
-    @OneToMany
-    private List<Book> books;
+    @OneToMany(targetEntity = Book.class, mappedBy = "author", fetch = FetchType.EAGER)
+       private List<Book> books;
+
+    public String getAuthorFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
+    public String getAuthorFullNameAndBookCount(){
+        return this.firstName + " " + this.lastName + " " + this.books.size();
+    }
 }

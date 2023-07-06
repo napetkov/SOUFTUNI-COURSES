@@ -15,8 +15,8 @@ public interface SeedService {
 
     //default method doesn't need to be overwritten and it will start all seeding methods
     default void seedAllData() throws IOException {
-        seedCategories();
         seedAuthors();
+        seedCategories();
         seedBooks();
     }
 
