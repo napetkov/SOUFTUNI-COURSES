@@ -1,6 +1,8 @@
 package bg.softuni.bookshop.services;
 
 import bg.softuni.bookshop.domain.entities.Book;
+import bg.softuni.bookshop.domain.enums.AgeRestriction;
+import bg.softuni.bookshop.domain.enums.EditionType;
 import bg.softuni.bookshop.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,22 @@ public class BookServiceImpl implements BookService {
         return this.bookRepository
                 .findAllByReleaseDateBefore(date)
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<Book> getAllBooksFromAuthorOrderedByReleaseDateAndTitle(String firstName, String lastName) {
+        return bookRepository.findAllByAuthorFirstNameAndAuthorLastNameOrderByReleaseDateDescTitleAsc(firstName, lastName)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<Book> getAllBooksByAgeRestriction(AgeRestriction ageRestriction) {
+        return bookRepository.findAllByAgeRestriction(ageRestriction);
+    }
+
+    @Override
+    public List<Book> getAllBooksWithGoldenEditionWithLessThanCopies(EditionType editionType,long numbersOfCopies) {
+        return bookRepository.findAllByEditionTypeAndCopiesIsLessThan(editionType,numbersOfCopies);
     }
 
 

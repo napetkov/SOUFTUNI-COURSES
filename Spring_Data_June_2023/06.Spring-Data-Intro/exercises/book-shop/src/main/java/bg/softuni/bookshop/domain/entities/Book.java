@@ -46,4 +46,7 @@ public class Book extends BaseEntity{
     @ManyToMany
     private Set<Category> categories;
 
+    public String getBooksTitleReleaseDateCopiesFormat(){
+        return this.title + " " + this.releaseDate + " " + this.copies;
+    }
 }
