@@ -11,7 +11,7 @@ import java.util.Optional;
 //creating the repository interface will create table in database regrading the given Entity
 @Repository
 public interface AuthorRepository extends JpaRepository <Author, Long> {
-    @Query("Select a from Author a order by a.books.size")
+    @Query("Select a from Author a order by size(a.books) ")
     Optional<List<Author>> findAllByBooksCountDesc();
 
 }
