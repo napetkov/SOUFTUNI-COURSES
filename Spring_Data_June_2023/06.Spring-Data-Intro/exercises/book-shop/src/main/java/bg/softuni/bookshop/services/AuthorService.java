@@ -15,4 +15,6 @@ public interface AuthorService {
     List<Author> getALlAuthorWhitBooksBeforeGivenYear(LocalDate date);
 
     List<Author> getALlAuthorOrderByBookCountDesc();
+
+    List<Author> getAllAuthorsEndsWith(String authorEndsWith);
 }

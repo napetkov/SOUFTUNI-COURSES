@@ -49,4 +49,12 @@ public class Book extends BaseEntity{
     public String getBooksTitleReleaseDateCopiesFormat(){
         return this.title + " " + this.releaseDate + " " + this.copies;
     }
+
+    public String getBooksTitleEditionTypeAndPriceFormat(){
+        return this.title + " " + this.editionType + " " + this.price;
+    }
+
+    public String getBooksTitleEditionTypeAgeRestrictionAndPriceFormat(){
+        return this.title + " " + this.editionType + " " + this.price;
+    }
 }

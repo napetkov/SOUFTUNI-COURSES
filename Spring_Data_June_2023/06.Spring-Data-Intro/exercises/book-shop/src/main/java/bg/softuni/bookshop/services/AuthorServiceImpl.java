@@ -74,4 +74,10 @@ public class AuthorServiceImpl implements AuthorService {
 
         return authors;
     }
+
+    @Override
+    public List<Author> getAllAuthorsEndsWith(String authorEndsWith) {
+
+        return authorRepository.findAllByFirstNameEndsWith(authorEndsWith);
+    }
 }
