@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -25,7 +24,7 @@ public class User extends BaseEntity{
     private String fullName;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Game> games;
+    private Set <Game> games;
 
     @OneToMany(targetEntity = Order.class, mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Order> orders;

@@ -3,7 +3,7 @@ package bg.softuni.gamestoremappingexercise.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -17,7 +17,7 @@ public class Order extends BaseEntity{
     private User user;
 
     @ManyToMany(targetEntity = Game.class,fetch = FetchType.EAGER)
-    private List<Game> games;
+    private Set<Game> games;
 
 
 }
