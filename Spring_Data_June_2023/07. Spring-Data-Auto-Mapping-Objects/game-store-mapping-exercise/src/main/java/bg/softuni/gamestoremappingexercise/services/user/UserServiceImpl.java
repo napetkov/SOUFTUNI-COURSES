@@ -59,8 +59,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String loginUser(String[] args) {
-        int argsLength = args.length;
+        if(loggedInUser != null) return "User is already logged.";
 
+        int argsLength = args.length;
         final String email = argsLength > 1 ? args[1] : "";
         final String password = argsLength > 2 ? args[2]: "";
 
@@ -80,6 +81,21 @@ public class UserServiceImpl implements UserService {
 
          this.loggedInUser = userToBeLogged.get();
 
-        return null;
+        return userLoginDto.successfullyLogged();
     }
+
+    @Override
+    public String logoutUser() {
+        if(loggedInUser == null) return "No user logged.";
+
+        this.loggedInUser = null;
+
+        return "Logout. Test Me.";
+    }
+
+    @Override
+    public boolean isLoggedInUserAdmin(){
+        return  this.loggedInUser != null && this.loggedInUser.getIsAdmin();
+    }
+
 }
