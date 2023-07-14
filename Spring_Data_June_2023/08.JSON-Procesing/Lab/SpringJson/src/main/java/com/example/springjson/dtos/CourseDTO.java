@@ -1,14 +1,7 @@
-package bg.softuni.dtos;
+package com.example.springjson.dtos;
 
-import com.google.gson.annotations.Expose;
-
-import java.io.Serializable;
-
-public class CourseDTO implements Serializable {
-    @Expose
+public class CourseDTO {
     private String name;
-
-    @Expose
     private int lengthInWeeks;
 
     public CourseDTO(String name, int lengthInWeeks) {
