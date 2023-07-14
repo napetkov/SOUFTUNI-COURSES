@@ -5,4 +5,7 @@ public interface GameService {
     String deleteGame(String[] args);
     String editGame(String[] args);
 
+    String printAllGames();
+
+    String printGameDetails(String[] arguments);
 }

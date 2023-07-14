@@ -10,4 +10,10 @@ public interface UserService {
     String logoutUser();
 
     boolean isLoggedInUserAdmin();
+
+    boolean isLoggedInUser();
+
+    User getLoggedInUser();
+
+//    String printOwnedGames();
 }

@@ -1,6 +1,7 @@
 package bg.softuni.gamestoremappingexercise;
 
 import bg.softuni.gamestoremappingexercise.services.game.GameService;
+import bg.softuni.gamestoremappingexercise.services.order.OrderService;
 import bg.softuni.gamestoremappingexercise.services.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,12 @@ public class ConsoleRunner implements CommandLineRunner {
     private final UserService userService;
     private final GameService gameService;
 
+    private final OrderService orderService;
 
-    public ConsoleRunner(UserService userService, GameService gameService) {
+    public ConsoleRunner(UserService userService, GameService gameService, OrderService orderService) {
         this.userService = userService;
         this.gameService = gameService;
+        this.orderService = orderService;
     }
 
     @Override
@@ -37,6 +40,12 @@ public class ConsoleRunner implements CommandLineRunner {
                 case ADD_GAME -> gameService.addGame(arguments);
                 case EDIT_GAME -> gameService.editGame(arguments);
                 case DELETE_GAME -> gameService.deleteGame(arguments);
+                case PRINT_ALL_GAMES_WITH_PRICE -> gameService.printAllGames();
+                case PRINT_GAME_DETAILS -> gameService.printGameDetails(arguments);
+//                case PRINT_OWNED_GAME -> userService.printOwnedGames();
+                case ADD_ITEM_TO_CART -> orderService.addItem(arguments);
+                case REMOVE_ITEM_FROM_CART -> orderService.removeItem(arguments);
+                case BUY_ITEM -> orderService.buyItem();
 
                 default -> "No command found";
             };

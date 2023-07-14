@@ -1,7 +1,9 @@
 package bg.softuni.gamestoremappingexercise.services.game;
 
 import bg.softuni.gamestoremappingexercise.domain.entities.Game;
-import bg.softuni.gamestoremappingexercise.domain.models.GameDto;
+import bg.softuni.gamestoremappingexercise.domain.models.AllGameDto;
+import bg.softuni.gamestoremappingexercise.domain.models.DetailGameDto;
+import bg.softuni.gamestoremappingexercise.domain.models.GameAddDto;
 import bg.softuni.gamestoremappingexercise.domain.models.GameEditDto;
 import bg.softuni.gamestoremappingexercise.repositories.GameRepository;
 import bg.softuni.gamestoremappingexercise.services.user.UserService;
@@ -10,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
@@ -45,7 +45,7 @@ public class GameServiceImpl implements GameService {
         final String description = argsLength > 6 ? args[6] : "";
         final LocalDate releaseDate = argsLength > 7 ? LocalDate.parse(args[7],DateTimeFormatter.ofPattern("dd-MM-yyyy")) : LocalDate.now();
 
-        final GameDto gameDto = new GameDto(title, price, size, trailer, thubnailURL, description, releaseDate);
+        final GameAddDto gameDto = new GameAddDto(title, price, size, trailer, thubnailURL, description, releaseDate);
 
         Game gameToBeSaved = this.mapper.map(gameDto, Game.class);
 
@@ -97,5 +97,32 @@ public class GameServiceImpl implements GameService {
         this.gameRepository.saveAndFlush(editedGame);
 
         return gameEditDto.successfullyEditedGame();
+    }
+
+    @Override
+    public String printAllGames() {
+        if (!userService.isLoggedInUser()) return "User is not Logged in.";
+
+        StringBuilder sb = new StringBuilder();
+
+        gameRepository.findAll()
+                .stream().map(g -> mapper.map(g, AllGameDto.class))
+                .toList()
+                .forEach(gDto -> sb.append(gDto.toString()).append(System.lineSeparator()));
+
+        return sb.toString();
+    }
+
+    @Override
+    public String printGameDetails(String[] arguments) {
+        String gameTitle = arguments[1];
+        if (!userService.isLoggedInUser()) return "User is not Logged in.";
+
+        Optional<Game> gameToBePrinted = gameRepository.findFirstByTitle(gameTitle);
+
+        if (gameToBePrinted.isEmpty()) return "No such Game.";
+
+        return mapper.map(gameToBePrinted, DetailGameDto.class).toString();
+
     }
 }
