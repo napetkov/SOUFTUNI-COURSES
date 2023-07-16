@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addresses>
+    <wrap>
+        <inner>
+            <country>Bulgaria</country>
+            <city-name>Sofia</city-name>
+        </inner>
+        <inner>
+            <country>Bulgaria</country>
+            <city-name>Sofia</city-name>
+        </inner>
+    </wrap>
+    <main>
+        <country>Bulgaria</country>
+        <city-name>Plovdiv</city-name>
+    </main>
+</addresses>
