@@ -1,6 +1,6 @@
 package bg.softuni.jsonxsmlexercise.services.product;
 
-import bg.softuni.jsonxsmlexercise.domein.models.ProductBaseInfoWithSellerFullNameModel;
+import bg.softuni.jsonxsmlexercise.domein.models.product.ProductBaseInfoWithSellerFullNameModel;
 import bg.softuni.jsonxsmlexercise.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

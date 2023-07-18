@@ -1,7 +1,7 @@
 package bg.softuni.jsonxsmlexercise.services;
 
-import bg.softuni.jsonxsmlexercise.domein.models.UserWithSoldProductsModel;
-import bg.softuni.jsonxsmlexercise.domein.models.UsersWithSoldProductsWrapperModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProductsModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UsersWithSoldProductsWrapperModel;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,9 +1,9 @@
 package bg.softuni.jsonxsmlexercise.services;
 
-import bg.softuni.jsonxsmlexercise.domein.models.UserModel;
-import bg.softuni.jsonxsmlexercise.domein.models.UserWithSoldProducts;
-import bg.softuni.jsonxsmlexercise.domein.models.UserWithSoldProductsModel;
-import bg.softuni.jsonxsmlexercise.domein.models.UsersWithSoldProductsWrapperModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UserModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProducts;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProductsModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.UsersWithSoldProductsWrapperModel;
 import bg.softuni.jsonxsmlexercise.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

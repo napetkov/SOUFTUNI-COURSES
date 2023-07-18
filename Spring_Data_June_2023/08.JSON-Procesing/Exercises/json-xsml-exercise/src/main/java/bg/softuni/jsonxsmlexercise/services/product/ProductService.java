@@ -1,6 +1,6 @@
 package bg.softuni.jsonxsmlexercise.services.product;
 
-import bg.softuni.jsonxsmlexercise.domein.models.ProductBaseInfoWithSellerFullNameModel;
+import bg.softuni.jsonxsmlexercise.domein.models.product.ProductBaseInfoWithSellerFullNameModel;
 
 import java.io.IOException;
 import java.math.BigDecimal;
