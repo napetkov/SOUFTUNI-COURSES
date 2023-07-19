@@ -1,6 +1,7 @@
 package bg.softuni.jsonxsmlexercise.domein.models.user;
 
 import bg.softuni.jsonxsmlexercise.domein.models.product.ProductSoldModel;
+import bg.softuni.jsonxsmlexercise.domein.models.product.wrappers.SoldProductsWrapperXMLModel;
 import jakarta.xml.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,8 @@ public class UserWithSoldProductsModel {
     @XmlAttribute(name = "last-name")
     private String lastName;
 
-    @XmlElement(name = "sold-product")
-    Set<ProductSoldModel> boughtProducts;
+    @XmlElement(name = "sold-products")
+    SoldProductsWrapperXMLModel boughtProducts;
 
 
 }

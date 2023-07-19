@@ -3,7 +3,7 @@ package bg.softuni.jsonxsmlexercise.services;
 import bg.softuni.jsonxsmlexercise.domein.models.user.UserModel;
 import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProducts;
 import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProductsModel;
-import bg.softuni.jsonxsmlexercise.domein.models.user.UsersWithSoldProductsWrapperModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.wrappers.UsersWithSoldProductsWrapperModel;
 import bg.softuni.jsonxsmlexercise.domein.models.user.wrappers.UserWithSoldProductsWrapperModel;
 import bg.softuni.jsonxsmlexercise.repositories.UserRepository;
 import jakarta.xml.bind.JAXBException;
@@ -41,19 +41,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UsersWithSoldProductsWrapperModel getUsersAndSoldProductsWrapper() throws IOException {
+    public UsersWithSoldProductsWrapperModel getUsersAndSoldProductsWrapper() throws IOException, JAXBException {
         List<UserWithSoldProducts> usersWithSoldProducts = userRepository
                 .findAllBySellingProductsBuyerIsNotNullOrderBySellingProductsBuyerLastNameAscSellingProductsBuyerFirstName()
                 .stream().map(u -> MAPPER.map(u, UserModel.class))
                 .map(UserModel::toUserWithProductModel)
                 .toList();
 
-        UsersWithSoldProductsWrapperModel response = new UsersWithSoldProductsWrapperModel(usersWithSoldProducts);
+        UsersWithSoldProductsWrapperModel wrapper = new UsersWithSoldProductsWrapperModel(usersWithSoldProducts);
 
 
-        writeIntoJsonFile(response,FOURTH_JSON_PATH);
+        writeIntoJsonFile(wrapper,FOURTH_JSON_PATH);
+        writeIntoXmlFile(wrapper,FOURTH_XML_PATH);
 
-
-        return response;
+        return wrapper;
     }
 }

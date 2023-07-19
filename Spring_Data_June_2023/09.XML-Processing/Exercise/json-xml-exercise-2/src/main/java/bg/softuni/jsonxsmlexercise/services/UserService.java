@@ -1,7 +1,7 @@
 package bg.softuni.jsonxsmlexercise.services;
 
 import bg.softuni.jsonxsmlexercise.domein.models.user.UserWithSoldProductsModel;
-import bg.softuni.jsonxsmlexercise.domein.models.user.UsersWithSoldProductsWrapperModel;
+import bg.softuni.jsonxsmlexercise.domein.models.user.wrappers.UsersWithSoldProductsWrapperModel;
 import jakarta.xml.bind.JAXBException;
 
 import java.io.IOException;
@@ -11,5 +11,5 @@ public interface UserService {
 
     List <UserWithSoldProductsModel> getUsersAndSoldProducts() throws IOException, JAXBException;
 
-    UsersWithSoldProductsWrapperModel getUsersAndSoldProductsWrapper() throws IOException;
+    UsersWithSoldProductsWrapperModel getUsersAndSoldProductsWrapper() throws IOException, JAXBException;
 }
