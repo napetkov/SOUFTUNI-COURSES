@@ -1,22 +1,18 @@
-package softuni.exam.models.entity;
+package softuni.exam.models.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "countries")
-public class Country extends BaseEntity{
+public class CountryImportDto {
 
-    @Column(name = "country_name",nullable = false)
+    @NotNull
+    @Size(min = 2, max = 60)
     private String countryName;
 
-    @Column(nullable = false)
+    @NotNull
+    @Size(min = 2, max = 20)
     private String currency;
 
-
-    public Country() {
-    }
 
     public String getCountryName() {
         return countryName;
