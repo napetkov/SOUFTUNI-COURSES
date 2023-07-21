@@ -28,7 +28,7 @@ public class CarsServiceImpl implements CarsService {
     private final ValidationUtils validationUtils;
     private final ModelMapper mapper;
 
-    private static String CARS_FILE_PATH = "C:\\Users\\35988\\Desktop\\Nikolay_Petkov\\SOFTUNI\\SOUFTUNI-COURSES\\Spring_Data_June_2023\\10.Exam-Prep\\JavaDBSpringDataRegularExam-03December2022\\skeleton\\src\\main\\resources\\files\\xml\\cars.xml";
+    private static String CARS_FILE_PATH = "src/main/resources/files/xml/cars.xml";
 
     @Autowired
     public CarsServiceImpl(CarsRepository carsRepository, XmlParser xmlParser, ValidationUtils validationUtils, ModelMapper mapper) {

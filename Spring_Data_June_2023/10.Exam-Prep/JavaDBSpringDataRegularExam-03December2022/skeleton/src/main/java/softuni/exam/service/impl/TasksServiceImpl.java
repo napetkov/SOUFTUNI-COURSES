@@ -3,12 +3,10 @@ package softuni.exam.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import softuni.exam.models.dto.TaskDto;
 import softuni.exam.models.dto.TaskImportDto;
 import softuni.exam.models.dto.TasksWrapperDto;
-import softuni.exam.models.entity.Car;
-import softuni.exam.models.entity.Mechanic;
-import softuni.exam.models.entity.Part;
-import softuni.exam.models.entity.Task;
+import softuni.exam.models.entity.*;
 import softuni.exam.repository.CarsRepository;
 import softuni.exam.repository.MechanicsRepository;
 import softuni.exam.repository.PartsRepository;
@@ -23,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static softuni.exam.models.Constant.*;
 // TODO: Implement all methods
@@ -30,7 +29,7 @@ import static softuni.exam.models.Constant.*;
 @Service
 public class TasksServiceImpl implements TasksService {
     private static String TASKS_FILE_PATH =
-            "C:\\Users\\35988\\Desktop\\Nikolay_Petkov\\SOFTUNI\\SOUFTUNI-COURSES\\Spring_Data_June_2023\\10.Exam-Prep\\JavaDBSpringDataRegularExam-03December2022\\skeleton\\src\\main\\resources\\files\\xml\\tasks.xml";
+            "src/main/resources/files/xml/tasks.xml";
     private final TasksRepository tasksRepository;
     private final MechanicsRepository mechanicsRepository;
     private final PartsRepository partsRepository;
@@ -98,7 +97,7 @@ public class TasksServiceImpl implements TasksService {
 
             this.tasksRepository.save(taskToSave);
 
-            stringBuilder.append(String.format(SUCCESSFUL_FORMAT, TASK, task.getPrice().setScale(2),"").trim());
+            stringBuilder.append(String.format(SUCCESSFUL_FORMAT, TASK, task.getPrice().setScale(2), "").trim());
 
         }
 
@@ -108,6 +107,14 @@ public class TasksServiceImpl implements TasksService {
 
     @Override
     public String getCoupeCarTasksOrderByPrice() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        return this.tasksRepository.findAllByCarCarTypeOrderByPriceDesc(CarType.coupe)
+                .stream()
+                .map(task -> mapper.map(task, TaskDto.class))
+                .map(TaskDto::toString)
+                .collect(Collectors.joining("\n"))
+                .trim();
+
     }
 }

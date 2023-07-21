@@ -23,7 +23,7 @@ import static softuni.exam.models.Constant.*;
 @Service
 public class PartsServiceImpl implements PartsService {
 
-    private static final String PARTS_FILE_PATH = "C:\\Users\\35988\\Desktop\\Nikolay_Petkov\\SOFTUNI\\SOUFTUNI-COURSES\\Spring_Data_June_2023\\10.Exam-Prep\\JavaDBSpringDataRegularExam-03December2022\\skeleton\\src\\main\\resources\\files\\json\\parts.json";
+    private static final String PARTS_FILE_PATH = "src/main/resources/files/json/parts.json";
     private final PartsRepository partsRepository;
     private final ValidationUtils validationUtils;
     private final ModelMapper mapper;

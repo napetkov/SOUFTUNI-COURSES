@@ -22,7 +22,7 @@ import static softuni.exam.models.Constant.*;
 // TODO: Implement all methods
 @Service
 public class MechanicsServiceImpl implements MechanicsService {
-    private static final String MECHANICS_FILE_PATH = "C:\\Users\\35988\\Desktop\\Nikolay_Petkov\\SOFTUNI\\SOUFTUNI-COURSES\\Spring_Data_June_2023\\10.Exam-Prep\\JavaDBSpringDataRegularExam-03December2022\\skeleton\\src\\main\\resources\\files\\json\\mechanics.json";
+    private static final String MECHANICS_FILE_PATH = "src/main/resources/files/json/mechanics.json";
     private final MechanicsRepository mechanicsRepository;
     private final ValidationUtils validationUtils;
     private final ModelMapper mapper;

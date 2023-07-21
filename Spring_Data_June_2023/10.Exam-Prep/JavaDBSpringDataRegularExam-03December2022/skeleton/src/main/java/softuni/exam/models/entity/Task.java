@@ -65,4 +65,5 @@ public class Task  extends BaseEntity{
     public void setCar(Car car) {
         this.car = car;
     }
+
 }
