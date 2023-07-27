@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,7 +16,7 @@ public class Offer extends BaseEntity{
     private BigDecimal price;
 
     @Column(name = "published_on",nullable = false,columnDefinition = "Date")
-    private Date publishedOn;
+    private LocalDate publishedOn;
 
     @ManyToOne
     private Agent agent;
@@ -34,11 +35,11 @@ public class Offer extends BaseEntity{
         this.price = price;
     }
 
-    public Date getPublishedOn() {
+    public LocalDate getPublishedOn() {
         return publishedOn;
     }
 
-    public void setPublishedOn(Date publishedOn) {
+    public void setPublishedOn(LocalDate publishedOn) {
         this.publishedOn = publishedOn;
     }
 

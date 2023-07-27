@@ -2,8 +2,10 @@ package softuni.exam.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import softuni.exam.models.dto.OfferExportDto;
 import softuni.exam.models.dto.OfferImportDto;
 import softuni.exam.models.dto.OfferImportWrapperDto;
+import softuni.exam.models.entity.ApartmentType;
 import softuni.exam.models.entity.Offer;
 import softuni.exam.repository.AgentRepository;
 import softuni.exam.repository.ApartmentRepository;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static softuni.exam.models.Constant.*;
 
@@ -84,6 +87,11 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public String exportOffers() {
-        return null;
+      return this.offerRepository
+                .findAllByApartmentApartmentTypeOrderByApartmentAreaDescPriceAsc(ApartmentType.three_rooms)
+                .stream().map(offer -> mapper.map(offer,OfferExportDto.class))
+              .map(OfferExportDto::toString)
+              .collect(Collectors.joining("\n"));
+
     }
 }

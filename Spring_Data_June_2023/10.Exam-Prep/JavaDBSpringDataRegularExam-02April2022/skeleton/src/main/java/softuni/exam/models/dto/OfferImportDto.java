@@ -28,7 +28,7 @@ public class OfferImportDto {
     private ApartmentIdDto apartment;
 
     @NotNull
-    @XmlElement
+    @XmlElement(name = "publishedOn")
     private String publishedOn;
 
     public Double getPrice() {
