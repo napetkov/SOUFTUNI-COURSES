@@ -1,5 +1,6 @@
 package com.example.football.service.impl;
 
+import com.example.football.models.dto.BestPlayerDto;
 import com.example.football.models.dto.PlayerImportWrapperDto;
 import com.example.football.models.entity.Player;
 import com.example.football.repository.PlayerRepository;
@@ -17,6 +18,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.football.models.Constants.*;
 
@@ -92,6 +96,12 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public String exportBestPlayers() {
-        return null;
+
+        return this.playerRepository
+                .findAllByBirthDateBetweenOrderByStatShootingDescStatPassingDescStatEnduranceDescLastNameAsc
+                        (LocalDate.of(1995, 01, 01), LocalDate.of(2003, 01, 01))
+                .stream().map(player -> modelMapper.map(player, BestPlayerDto.class))
+                .map(Object::toString).collect(Collectors.joining());
+
     }
 }
