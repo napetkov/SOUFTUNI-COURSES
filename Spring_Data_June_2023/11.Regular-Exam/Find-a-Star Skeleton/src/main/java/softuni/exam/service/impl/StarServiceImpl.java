@@ -92,9 +92,14 @@ public class StarServiceImpl implements StarService {
 //                .stream().map(ExportStarDto::toString)
 //                .collect(Collectors.joining());
 
-        return this.starRepository.findAllByStarTypeOrderByLightYears(StarType.RED_GIANT)
-                .stream().filter(star -> this.astronomerRepository.findFirstByStarId(star.getId()).isEmpty())
-                .map(star -> modelMapper.map(star, ExportStarDto.class)).collect(Collectors.toList())
+//        return this.starRepository.findAllByStarTypeOrderByLightYears(StarType.RED_GIANT)
+//                .stream().filter(star -> this.astronomerRepository.findFirstByStarId(star.getId()).isEmpty())
+//                .map(star -> modelMapper.map(star, ExportStarDto.class)).collect(Collectors.toList())
+//                .stream().map(ExportStarDto::toString)
+//                .collect(Collectors.joining());
+
+        return this.starRepository.findAllByStarTypeOrderByLightYearsAndNotObserving(StarType.RED_GIANT)
+                .stream().map(star -> modelMapper.map(star, ExportStarDto.class)).collect(Collectors.toList())
                 .stream().map(ExportStarDto::toString)
                 .collect(Collectors.joining());
 
