@@ -1,9 +1,10 @@
 package org.softuni.repository;
 
 import org.softuni.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class InMemoryUserRepository implements UserRepository{
     @Override
     public List<User> findAll() {
