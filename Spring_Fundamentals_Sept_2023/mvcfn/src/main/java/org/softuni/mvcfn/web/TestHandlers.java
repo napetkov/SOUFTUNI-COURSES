@@ -12,6 +12,7 @@ import java.util.Map;
 public class TestHandlers {
 
     public ServerResponse test(ServerRequest serverRequest){
+
         return ServerResponse.ok().render("test",
                 Map.of("massage", "Hello Pesho!!!"));
     }
