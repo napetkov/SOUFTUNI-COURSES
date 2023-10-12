@@ -1,8 +1,7 @@
 package org.softuni.pathfinder.models;
 
 import jakarta.persistence.*;
-
-import java.util.List;
+import org.softuni.pathfinder.models.enums.RouteCategories;
 
 @Entity
 @Table(name = "categories")

@@ -1,9 +1,9 @@
 package org.softuni.pathfinder.models;
 
 import jakarta.persistence.*;
+import org.softuni.pathfinder.models.enums.Level;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

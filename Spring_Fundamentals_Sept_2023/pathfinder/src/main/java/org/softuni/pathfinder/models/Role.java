@@ -1,6 +1,7 @@
 package org.softuni.pathfinder.models;
 
 import jakarta.persistence.*;
+import org.softuni.pathfinder.models.enums.UserRoles;
 
 @Entity
 @Table(name = "roles")
