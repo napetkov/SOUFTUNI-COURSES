@@ -1,25 +1,25 @@
 package org.softuni.pathfinder.models;
 
 import jakarta.persistence.*;
-import org.softuni.pathfinder.models.enums.RouteCategories;
+import org.softuni.pathfinder.models.enums.CategoryNames;
 
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RouteCategories name;
+    private CategoryNames name;
     @Column(name = "description")
     private String description;
 
     public Category() {
     }
 
-    public RouteCategories getName() {
+    public CategoryNames getName() {
         return name;
     }
 
-    public void setName(RouteCategories name) {
+    public void setName(CategoryNames name) {
         this.name = name;
     }
 

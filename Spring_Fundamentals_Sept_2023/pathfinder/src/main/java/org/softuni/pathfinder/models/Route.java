@@ -1,6 +1,7 @@
 package org.softuni.pathfinder.models;
 
 import jakarta.persistence.*;
+import org.softuni.pathfinder.models.dto.AddRouteBidingModel;
 import org.softuni.pathfinder.models.enums.Level;
 
 import java.util.HashSet;
@@ -86,5 +87,10 @@ public class Route extends BaseEntity{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public void addCategories(Set<Category> categories) {
+        this.categories.addAll(categories);
     }
 }

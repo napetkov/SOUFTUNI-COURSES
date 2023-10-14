@@ -1,13 +1,7 @@
 package org.softuni.pathfinder.service;
 
-import org.softuni.pathfinder.models.dto.UserLoginBidingModel;
-import org.softuni.pathfinder.models.dto.UserRegisterBindingModel;
+import org.softuni.pathfinder.models.User;
 
 public interface UserService {
-    void register(UserRegisterBindingModel userRegisterBindingModel);
-
-    boolean login(UserLoginBidingModel userLoginBidingModel);
-
-    void logout();
-
+    User getLoggedUser();
 }
