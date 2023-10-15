@@ -25,7 +25,7 @@ public class OfferEntity extends BaseEntity{
 
     private long mileage;
 
-    private BigDecimal price;
+    private Integer price;
 
     private int year;
 
@@ -77,11 +77,11 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public OfferEntity setPrice(BigDecimal price) {
+    public OfferEntity setPrice(Integer price) {
         this.price = price;
         return this;
     }
