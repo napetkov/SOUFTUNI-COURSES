@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace = "~{fragments/head}">
+<head th:replace="~{fragments/head}">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
                 <select id="modelId"
-                        th:name = "modelId"
+                        th:field="*{modelId}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select a model -</option>
@@ -30,10 +30,11 @@
                             th:each="brand: ${brands}"
                             th:label="${brand.name()}">
                         <option
-                            th:each="model: ${brand.models()}"
-                            th:text="${model.name}"
-                            th:value="${model.id}"
-                            th:selected="*{modelId}==${model.id}">Model 1</option>
+                                th:each="model: ${brand.models()}"
+                                th:text="${model.name}"
+                                th:value="${model.id}"
+                        >Model 1
+                        </option>
                     </optgroup>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -47,12 +48,11 @@
                 <label for="price" class="text-white font-weight-bold">Price</label>
                 <input id="price"
                        type="number"
-                       th:name="price"
                        th:field="*{price}"
                        th:errorclass="is-invalid"
                        class="form-control"
                        placeholder="Suggested price"/>
-                <p  class="invalid-feedback errors alert alert-danger">
+                <p class="invalid-feedback errors alert alert-danger">
                     Suggested price is required.
                 </p>
             </div>
@@ -65,15 +65,15 @@
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
                 <select id="engine"
-                        th:name="engine"
+                        th:field="*{engine}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select engine type -</option>
-<!--                    <option th:each="e : ${T(org.softuni.mobilele.model.enums.EngineEnum).values()}"-->
+                    <!--                    <option th:each="e : ${T(org.softuni.mobilele.model.enums.EngineEnum).values()}"-->
                     <option th:each="e : ${engines}"
                             th:text="${e}"
                             th:value="${e}"
-                            th:selected="${e} == *{engine}">
+                            >
 
                     </option>
                 </select>
@@ -87,7 +87,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
                 <select id="transmission"
-                        th:name ="transmission"
+                        th:field="*{transmission}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select transmission type -</option>
@@ -95,7 +95,7 @@
                             th:each="t : ${T(org.softuni.mobilele.model.enums.TransmissionEnum).values()}"
                             th:text="${t}"
                             th:value="${t}"
-                            th:selected="${t} == *{transmission}">
+                            >
                     </option>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -111,7 +111,6 @@
                 <label for="year" class="text-white font-weight-bold">Year</label>
                 <input id="year"
                        type="number"
-                       th:name="year"
                        th:field="*{year}"
                        th:errorclass="is-invalid"
                        class="form-control"
@@ -127,10 +126,8 @@
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
                 <input id="mileage"
                        type="number"
-                       th:name="mileage"
                        th:field="*{mileage}"
                        th:errorclass="is-invalid"
-                       step="1000"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -145,7 +142,6 @@
             <label class="text-white font-weight-bold" for="description">Description</label>
             <textarea id="description"
                       type="textarea"
-                      th:name="description"
                       th:field="*{description}"
                       th:errorclass="is-invalid"
                       class="form-control"
@@ -162,7 +158,6 @@
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
             <input id="imageUrl"
                    type="url"
-                   th:name="imageUrl"
                    th:field="*{imageUrl}"
                    th:errorclass="is-invalid"
                    class="form-control"
@@ -184,7 +179,7 @@
 </div>
 
 <div>
-    <footer> </footer>
+    <footer></footer>
 </div>
 
 </body>
