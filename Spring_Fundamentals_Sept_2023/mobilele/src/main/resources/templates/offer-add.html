@@ -73,7 +73,7 @@
                     <option th:each="e : ${engines}"
                             th:text="${e}"
                             th:value="${e}"
-                            >
+                    >
 
                     </option>
                 </select>
@@ -95,7 +95,7 @@
                             th:each="t : ${T(org.softuni.mobilele.model.enums.TransmissionEnum).values()}"
                             th:text="${t}"
                             th:value="${t}"
-                            >
+                    >
                     </option>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -110,14 +110,19 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
                 <input id="year"
-                       type="number"
-                       th:field="*{year}"
                        th:errorclass="is-invalid"
+                       th:field="*{year}"
+                       type="number"
                        class="form-control"
                        placeholder="Manufacturing year"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Manufacturing year is required.
+                <p th:if="${#fields.hasErrors('year')}"
+                   class="errors alert alert-danger"
+                   th:errors="*{year}">
                 </p>
+
+                <!--                <p class="invalid-feedback errors alert alert-danger">-->
+                <!--                    Manufacturing year is required.-->
+                <!--                </p>-->
             </div>
             <!-- EO: Year -->
 

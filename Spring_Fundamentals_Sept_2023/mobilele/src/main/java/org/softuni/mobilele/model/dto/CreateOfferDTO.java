@@ -3,16 +3,32 @@ package org.softuni.mobilele.model.dto;
 import jakarta.validation.constraints.*;
 import org.softuni.mobilele.model.enums.EngineEnum;
 import org.softuni.mobilele.model.enums.TransmissionEnum;
+import org.softuni.mobilele.model.validation.YearNotInTheFuture;
+
+import java.math.BigDecimal;
 
 public final class CreateOfferDTO {
-    private @NotEmpty @Size(min = 2, max = 512) String description;
-    private @Positive @NotNull Long modelId;
-    private @NotNull EngineEnum engine;
-    private @NotNull TransmissionEnum transmission;
-    private @NotEmpty String imageUrl;
-    private @Positive @NotNull Long mileage;
-    private @Positive @NotNull Integer price;
-    private  @NotNull @Min(1930) Integer year;
+    @NotEmpty
+    @Size(min = 2, max = 512)
+    private String description;
+    @Positive
+    @NotNull
+    private Long modelId;
+    @NotNull
+    private EngineEnum engine;
+    @NotNull
+    private TransmissionEnum transmission;
+    @NotEmpty
+    private String imageUrl;
+    @Positive
+    @NotNull
+    private Long mileage;
+    @Positive
+    private @NotNull BigDecimal price;
+    @YearNotInTheFuture(message = "The year should not be in the future!")
+    @NotNull(message = "Year must be provided!")
+    @Min(1930)
+    private Integer year;
 
     public String getDescription() {
         return description;
@@ -68,11 +84,11 @@ public final class CreateOfferDTO {
         return this;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public CreateOfferDTO setPrice(Integer price) {
+    public CreateOfferDTO setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }

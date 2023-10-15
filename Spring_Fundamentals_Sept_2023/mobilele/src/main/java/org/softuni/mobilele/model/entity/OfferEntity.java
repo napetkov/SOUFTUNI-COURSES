@@ -1,9 +1,14 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.softuni.mobilele.model.enums.EngineEnum;
 import org.softuni.mobilele.model.enums.TransmissionEnum;
+import org.softuni.mobilele.model.validation.YearNotInTheFuture;
 
 import java.math.BigDecimal;
 import java.sql.Types;
@@ -12,24 +17,29 @@ import java.util.UUID;
 @Entity
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity{
-
+    @NotNull
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
+    @NotEmpty
     private String description;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private EngineEnum engine;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
-
+    @NotEmpty
     private String imageUrl;
-
+    @Positive
     private long mileage;
-
-    private Integer price;
-
+    @NotNull
+    private BigDecimal price;
+    @Positive
+    @Min(1930)
     private int year;
-
+    @NotNull
     @ManyToOne
+    @YearNotInTheFuture
     private ModelEntity model;
 
     public String getDescription() {
@@ -77,11 +87,11 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public OfferEntity setPrice(Integer price) {
+    public OfferEntity setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
