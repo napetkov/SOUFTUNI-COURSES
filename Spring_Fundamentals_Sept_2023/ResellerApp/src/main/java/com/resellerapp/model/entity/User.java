@@ -14,12 +14,11 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
-//    @Length(min = 2,max = 20)
-//    @Column(unique = true,nullable = false)
-//    private String username;
+    @Length(min = 2,max = 20)
+    @Column(unique = true,nullable = false)
+    private String username;
 
     @NotNull
-    @Length(min = 2,max = 20)
     private String password;
 
     @Email
