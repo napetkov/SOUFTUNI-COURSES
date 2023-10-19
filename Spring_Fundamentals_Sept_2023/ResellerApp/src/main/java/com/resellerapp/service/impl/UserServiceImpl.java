@@ -23,13 +23,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean register(UserRegisterBindingModel userRegisterBindingModel) {
-        if(userRegisterBindingModel == null){
+        if (userRegisterBindingModel == null) {
             return false;
         }
 
-        if(this.findUserByUsername(userRegisterBindingModel.getUsername())!= null){
+        if (this.findUserByUsername(userRegisterBindingModel.getUsername()) != null) {
             return false;
-        };
+        }
+        ;
 
         User user = new User();
         user.setUsername(userRegisterBindingModel.getUsername())
@@ -41,18 +42,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(UserLoginBidingModel userLoginBidingModel) {
-    User user = this.findUserByUsername(userLoginBidingModel.getUsername());
+        User user = this.findUserByUsername(userLoginBidingModel.getUsername());
 
-    if(user != null && passwordEncoder.matches(userLoginBidingModel.getPassword(), user.getPassword())){
-        loggedUser.setUsername(userLoginBidingModel.getUsername());
-        loggedUser.setLogged(true);
+        if (user != null && passwordEncoder.matches(userLoginBidingModel.getPassword(), user.getPassword())) {
+            loggedUser.setUsername(userLoginBidingModel.getUsername());
+            loggedUser.setLogged(true);
 
-        return true;
-    }
+            return true;
+        }
         return false;
     }
 
-private User findUserByUsername(String username){
+    @Override
+    public void logout() {
+        loggedUser.setUsername(null);
+        loggedUser.setLogged(false);
+    }
+
+    private User findUserByUsername(String username) {
         return userRepository.findByUsername(username);
-}
+    }
 }

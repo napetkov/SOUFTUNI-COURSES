@@ -60,8 +60,10 @@ public class OfferController {
         return "redirect:/offer/" + newOfferUUID;
     }
 
-//    @GetMapping("/{uuid}")
-//    public String details(@PathVariable("uuid") String uuid) {
-//        return "details";
-//    }
+    @GetMapping("/{uuid}")
+    public String details(@PathVariable("uuid") String uuid) {
+        //TODO: Get details and display on view
+
+        return "details";
+    }
 }

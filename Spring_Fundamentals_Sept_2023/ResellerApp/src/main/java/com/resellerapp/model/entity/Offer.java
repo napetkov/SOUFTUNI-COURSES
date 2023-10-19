@@ -1,5 +1,6 @@
 package com.resellerapp.model.entity;
 
+import com.resellerapp.model.MyOffersDTO;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -26,7 +27,15 @@ public class Offer extends BaseEntity{
     @ManyToOne
     private User boughtBy;
 
+    public Offer(MyOffersDTO myOffersDTO, Condition condition, User createdBy) {
+        this.description = myOffersDTO.getDescription();
+        this.price = myOffersDTO.getPrice();
+        this.condition = condition;
+        this.createdBy = createdBy;
+    }
 
+    public Offer() {
+    }
 
     public String getDescription() {
         return description;

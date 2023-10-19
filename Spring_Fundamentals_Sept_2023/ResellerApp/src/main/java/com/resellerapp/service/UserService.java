@@ -7,4 +7,6 @@ public interface UserService {
     boolean register(UserRegisterBindingModel userRegisterBindingModel);
 
     boolean login(UserLoginBidingModel userLoginBidingModel);
+
+    void logout();
 }

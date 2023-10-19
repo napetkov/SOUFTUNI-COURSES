@@ -9,6 +9,7 @@ public class BoughtOffersDTO {
     private String description;
     private BigDecimal price;
 
+
     public BoughtOffersDTO() {
     }
 
