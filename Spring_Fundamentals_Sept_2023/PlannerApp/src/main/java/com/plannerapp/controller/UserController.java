@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ModelAndView login(){
+    public ModelAndView logout(){
         if(!loggedUser.isLogged()){
             return new ModelAndView("redirect:/");
         }
