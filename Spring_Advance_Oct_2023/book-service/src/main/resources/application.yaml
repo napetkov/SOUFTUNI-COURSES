@@ -1,0 +1,27 @@
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${MYSQL_HOST} :3306/books?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWORD}
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        defer-datasource-initialization: true
+        properties:
+            hibernate:
+            format_sql: true
+        hibernate:
+            ddl-auto: update
+    sql:
+        init:
+            mode: never
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+logging:
+    level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.orm.jdbc.bind: TRACE
+
+
