@@ -15,6 +15,7 @@ public class BookEntity {
     @ManyToOne
     private AuthorEntity author;
 
+
     public Long getId() {
         return id;
     }
