@@ -11,11 +11,14 @@ spring:
             ddl-auto: update
     sql:
         init:
-            mode: always
+            mode: never
     mvc:
         hiddenmethod:
           filter:
               enabled: true
+mobilele:
+    remember.me.key: ${REMEMBER_ME_KEY:topsecret}
+
 logging:
     level:
       org.hibernate.SQL: DEBUG
