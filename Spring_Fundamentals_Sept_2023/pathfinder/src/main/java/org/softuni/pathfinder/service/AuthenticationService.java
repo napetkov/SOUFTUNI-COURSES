@@ -1,7 +1,7 @@
 package org.softuni.pathfinder.service;
 
-import org.softuni.pathfinder.models.dto.UserLoginBidingModel;
-import org.softuni.pathfinder.models.dto.UserRegisterBindingModel;
+import org.softuni.pathfinder.models.dto.binding.UserLoginBidingModel;
+import org.softuni.pathfinder.models.dto.binding.UserRegisterBindingModel;
 
 public interface AuthenticationService {
     void register(UserRegisterBindingModel userRegisterBindingModel);

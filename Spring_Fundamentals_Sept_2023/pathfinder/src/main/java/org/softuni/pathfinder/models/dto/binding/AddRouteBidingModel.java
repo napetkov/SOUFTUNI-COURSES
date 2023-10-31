@@ -1,5 +1,6 @@
-package org.softuni.pathfinder.models.dto;
+package org.softuni.pathfinder.models.dto.binding;
 
+import org.softuni.pathfinder.models.User;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
 
@@ -10,7 +11,17 @@ public class AddRouteBidingModel {
     private String description;
     private Level level;
     private String videoUrl;
+    private User author;
     private Set<CategoryNames> categories;
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public AddRouteBidingModel setAuthor(User author) {
+        this.author = author;
+        return this;
+    }
 
     public String getName() {
         return name;

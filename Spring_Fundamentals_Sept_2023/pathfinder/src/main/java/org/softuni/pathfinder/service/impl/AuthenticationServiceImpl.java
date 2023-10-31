@@ -2,8 +2,8 @@ package org.softuni.pathfinder.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.softuni.pathfinder.models.User;
-import org.softuni.pathfinder.models.dto.UserLoginBidingModel;
-import org.softuni.pathfinder.models.dto.UserRegisterBindingModel;
+import org.softuni.pathfinder.models.dto.binding.UserLoginBidingModel;
+import org.softuni.pathfinder.models.dto.binding.UserRegisterBindingModel;
 import org.softuni.pathfinder.reposritory.UserRepository;
 import org.softuni.pathfinder.service.AuthenticationService;
 import org.softuni.pathfinder.service.session.LoggedUser;

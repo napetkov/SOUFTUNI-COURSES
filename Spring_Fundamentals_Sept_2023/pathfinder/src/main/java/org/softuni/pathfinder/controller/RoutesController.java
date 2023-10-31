@@ -1,6 +1,6 @@
 package org.softuni.pathfinder.controller;
 
-import org.softuni.pathfinder.models.dto.AddRouteBidingModel;
+import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
 import org.softuni.pathfinder.service.RouteService;

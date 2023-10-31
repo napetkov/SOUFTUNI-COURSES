@@ -28,6 +28,37 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Level level;
 
+    public User() {
+        this.roles = new HashSet<>();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public User setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -37,55 +68,30 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public User() {
-        this.roles = new HashSet<>();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> role) {
-        this.roles = role;
+    public User setRoles(Set<Role> roles) {
+        this.roles = roles;
+        return this;
     }
 
     public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public User setLevel(Level level) {
         this.level = level;
+        return this;
     }
 }

@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.softuni.pathfinder.models.Category;
 import org.softuni.pathfinder.models.Route;
 import org.softuni.pathfinder.models.User;
-import org.softuni.pathfinder.models.dto.AddRouteBidingModel;
+import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
 import org.softuni.pathfinder.reposritory.CategoryRepository;
 import org.softuni.pathfinder.reposritory.RouteRepository;
 import org.softuni.pathfinder.service.RouteService;
