@@ -1,7 +1,7 @@
 package org.softuni.pathfinder.controller;
 
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
-import org.softuni.pathfinder.models.dto.view.RoutesGetAllViewModel;
+import org.softuni.pathfinder.models.dto.view.RouteViewModel;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
 import org.softuni.pathfinder.service.RouteService;
@@ -25,7 +25,7 @@ public class RoutesController {
 
     @GetMapping
     public ModelAndView getAll() {
-        List<RoutesGetAllViewModel> routes = routeService.getAll();
+        List<RouteViewModel> routes = routeService.getAll();
 
         ModelAndView modelAndView = new ModelAndView("routes");
         modelAndView.addObject("routes", routes);

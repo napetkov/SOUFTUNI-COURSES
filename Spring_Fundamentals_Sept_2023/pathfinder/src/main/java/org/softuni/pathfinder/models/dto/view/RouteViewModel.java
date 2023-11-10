@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
-public class RoutesGetAllViewModel {
+public class RouteViewModel {
     private Long id;
     private String imageUrl;
     private String name;

@@ -5,7 +5,7 @@ import org.softuni.pathfinder.models.Category;
 import org.softuni.pathfinder.models.Route;
 import org.softuni.pathfinder.models.User;
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
-import org.softuni.pathfinder.models.dto.view.RoutesGetAllViewModel;
+import org.softuni.pathfinder.models.dto.view.RouteViewModel;
 import org.softuni.pathfinder.reposritory.CategoryRepository;
 import org.softuni.pathfinder.reposritory.RouteRepository;
 import org.softuni.pathfinder.service.RouteService;
@@ -30,10 +30,10 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<RoutesGetAllViewModel> getAll() {
+    public List<RouteViewModel> getAll() {
         return routeRepository.findAll()
                 .stream()
-                .map(route -> modelMapper.map(route, RoutesGetAllViewModel.class))
+                .map(route -> modelMapper.map(route, RouteViewModel.class))
                 .toList();
     }
 
