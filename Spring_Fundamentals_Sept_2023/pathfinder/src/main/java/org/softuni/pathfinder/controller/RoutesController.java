@@ -1,6 +1,7 @@
 package org.softuni.pathfinder.controller;
 
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
+import org.softuni.pathfinder.models.dto.view.RoutesGetAllViewModel;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
 import org.softuni.pathfinder.service.RouteService;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/routes")
@@ -19,6 +22,16 @@ public class RoutesController {
         this.routeService = routeService;
     }
 
+
+    @GetMapping
+    public ModelAndView getAll() {
+        List<RoutesGetAllViewModel> routes = routeService.getAll();
+
+        ModelAndView modelAndView = new ModelAndView("routes");
+        modelAndView.addObject("routes", routes);
+
+        return modelAndView;
+    }
 
     @GetMapping("/add")
     public ModelAndView addRoute() {
@@ -36,5 +49,6 @@ public class RoutesController {
 
         return new ModelAndView("redirect:/");
     }
+
 
 }

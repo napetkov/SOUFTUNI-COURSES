@@ -5,12 +5,14 @@ import org.softuni.pathfinder.models.Category;
 import org.softuni.pathfinder.models.Route;
 import org.softuni.pathfinder.models.User;
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
+import org.softuni.pathfinder.models.dto.view.RoutesGetAllViewModel;
 import org.softuni.pathfinder.reposritory.CategoryRepository;
 import org.softuni.pathfinder.reposritory.RouteRepository;
 import org.softuni.pathfinder.service.RouteService;
 import org.softuni.pathfinder.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -28,6 +30,14 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    public List<RoutesGetAllViewModel> getAll() {
+        return routeRepository.findAll()
+                .stream()
+                .map(route -> modelMapper.map(route, RoutesGetAllViewModel.class))
+                .toList();
+    }
+
+    @Override
     public void add(AddRouteBidingModel addRouteBidingModel) {
         Route route = modelMapper.map(addRouteBidingModel, Route.class);
         route.getCategories().clear();
@@ -40,4 +50,6 @@ public class RouteServiceImpl implements RouteService {
 
         routeRepository.save(route);
     }
+
+
 }

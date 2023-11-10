@@ -26,7 +26,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getLoggedUser() {
-        return userRepository.findByUsername(loggedUser.getUsername()).get();
+        return userRepository.findByEmail(loggedUser.getEmail()).get();
+    }
+
+    @Override
+    public boolean isUniqueUsername(String username) {
+        return this.userRepository.findByUsername(username).isEmpty();
+    }
+
+    @Override
+    public boolean isUniqueEmail(String email) {
+        return this.userRepository.findByEmail(email).isEmpty();
     }
 
     @Override

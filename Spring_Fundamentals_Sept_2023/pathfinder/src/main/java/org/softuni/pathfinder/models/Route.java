@@ -21,6 +21,8 @@ public class Route extends BaseEntity{
     private User author;
     @Column(name = "video_url")
     private String videoUrl;
+    @Column(name = "image_url")
+    private String imageUrl;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "routes_categories",
             joinColumns = @JoinColumn(name = "route_entity_id",referencedColumnName = "id"),
@@ -78,6 +80,15 @@ public class Route extends BaseEntity{
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Route setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
     }
 
     public String getDescription() {
