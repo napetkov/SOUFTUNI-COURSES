@@ -11,6 +11,7 @@ import org.softuni.pathfinder.models.User;
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
 import org.softuni.pathfinder.models.dto.binding.UserRegisterBindingModel;
 import org.softuni.pathfinder.models.dto.view.RouteCategoryViewModel;
+import org.softuni.pathfinder.models.dto.view.RouteDetailViewModel;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
 import org.softuni.pathfinder.reposritory.UserRepository;
@@ -70,6 +71,7 @@ public class AppConfig {
                 .addMappings(mapper -> mapper
                         .with(youtubeSubUrlProvider)
                         .map(AddRouteBidingModel::getVideoUrl, Route::setVideoUrl));
+
 
         //UserRegisterBindingModel -> User
         Provider<User> newUserProvider = req -> new User()

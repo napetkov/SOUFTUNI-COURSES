@@ -1,5 +1,7 @@
 package org.softuni.pathfinder.models.dto.binding;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.softuni.pathfinder.models.User;
 import org.softuni.pathfinder.models.enums.CategoryNames;
 import org.softuni.pathfinder.models.enums.Level;
@@ -7,7 +9,9 @@ import org.softuni.pathfinder.models.enums.Level;
 import java.util.Set;
 
 public class AddRouteBidingModel {
+    @Size(min = 3, message = "Name length must be more than 3 characters")
     private String name;
+    @Size(min = 5, message = "Description length must be more than 5 characters!")
     private String description;
     private Level level;
     private String videoUrl;

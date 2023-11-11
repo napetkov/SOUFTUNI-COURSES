@@ -35,3 +35,4 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
+binding-result-package: org.springframework.validation.BindingResult
