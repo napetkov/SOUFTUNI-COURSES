@@ -2,10 +2,11 @@ package org.softuni.pathfinder.controller;
 
 import jakarta.validation.Valid;
 import org.softuni.pathfinder.models.dto.binding.AddRouteBidingModel;
+import org.softuni.pathfinder.models.dto.binding.UploadPictureRouteBindingModel;
+import org.softuni.pathfinder.models.dto.view.RouteCategoryViewModel;
 import org.softuni.pathfinder.models.dto.view.RouteDetailViewModel;
 import org.softuni.pathfinder.models.dto.view.RouteViewModel;
 import org.softuni.pathfinder.models.enums.CategoryNames;
-import org.softuni.pathfinder.models.enums.Level;
 import org.softuni.pathfinder.service.RouteService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -86,5 +87,28 @@ public class RoutesController {
         return modelAndView;
     }
 
+    @PostMapping("/upload-picture")
+    public ModelAndView uploadPicture(@Valid UploadPictureRouteBindingModel uploadPictureRouteBindingModel){
+        routeService.uploadPicture(uploadPictureRouteBindingModel);
+
+        return new ModelAndView("redirect:/routes");
+    }
+
+    @GetMapping("/{categoryName}")
+    public ModelAndView getAllByCategory(@PathVariable("categoryName") CategoryNames categoryName){
+        List<RouteCategoryViewModel> routes = routeService.getAllByCategory(categoryName);
+
+        String view = switch (categoryName){
+            case PEDESTRIAN -> "pedestrian";
+            case MOTORCYCLE -> "motorcycle";
+            case CAR -> "car";
+            case BICYCLE -> "bicycle";
+        };
+
+        ModelAndView modelAndView = new ModelAndView(view);
+        modelAndView.addObject("routes",routes);
+
+        return modelAndView;
+    }
 
 }

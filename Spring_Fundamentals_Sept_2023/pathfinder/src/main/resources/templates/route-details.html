@@ -39,8 +39,10 @@
             </div>
             <div>
                 <h4>Choose picture</h4>
-                <form action="/" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="routeId" id="routeId"
+                <form th:action="@{/routes/upload-picture}"
+                     method="POST"
+                      enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="routeId"
                            th:value="${route.id}">
                     <div class="form-group">
                         <label>

@@ -52,7 +52,6 @@ public class UsersController {
         return new ModelAndView("redirect:login");
     }
 
-    //TODO: change to POST
     @PostMapping("/logout")
     public ModelAndView logout(){
         this.authenticationService.logout();

@@ -69,17 +69,20 @@
             </div>
             <div class="form-group">
                 <input type="file" name="gpxCoordinates"
+                       th:field="*{gpxCoordinates}"
                        id="inputGpx"
                        class="form-control-file"
                        aria-describedby="inputGpxError">
                 <small id="inputGpxError"
-                       class="invalid-feedback  form-text bg-danger rounded">Must be valid GPX Coordinates</small>
+                       th:errors="*{gpxCoordinates}"
+                       class="form-text bg-danger rounded">Must be valid GPX Coordinates</small>
             </div>
         </div>
         <div>
             <div class="form-group">
                 <label for="level">Level</label>
-                <select id="level"
+                <select th:field="*{level}"
+                        id="level"
                         name="level"
                         class="custom-select">
                     <option value="" selected disabled>Select level</option>
@@ -99,13 +102,17 @@
                        name="videoUrl"
                        type="text"
                        class="form-control" placeholder="Video url">
+                <small id="inputVideoUrlError"
+                       th:errors="*{videoUrl}"
+                       class="form-text bg-danger rounded">Must be valid GPX Coordinates</small>
             </div>
         </div>
 
         <div>
             <div class="form-group p-3">
                 <label class="p-2" for="categories">Categories:</label>
-                <input th:each="category: ${T(org.softuni.pathfinder.models.enums.CategoryNames).values()}" class="m-3"
+                <input th:field="*{categories}"
+                        th:each="category: ${T(org.softuni.pathfinder.models.enums.CategoryNames).values()}" class="m-3"
                        type="checkbox" name="categories" id="categories"
                        th:value="${category}"
                        th:text="${#strings.toLowerCase(category)}">
