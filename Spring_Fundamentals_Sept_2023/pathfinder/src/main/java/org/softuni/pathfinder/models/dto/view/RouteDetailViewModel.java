@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.softuni.pathfinder.models.enums.Level;
 
+import java.util.List;
+
 @Getter
 @Setter
 @SuperBuilder
@@ -17,6 +19,7 @@ public class RouteDetailViewModel {
     private String name;
     private Level level;
     private String authorName;
+    private List<CommentViewModel> comments;
 
 //    TODO: pass coordinates
 

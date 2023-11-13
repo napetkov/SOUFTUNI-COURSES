@@ -58,7 +58,10 @@ public class RouteServiceImpl implements RouteService {
         Route route = routeRepository.findById(id)
                 .orElseThrow(() -> new RouteNotFoundException("Route with id: " + id + " was not found!"));
 
-        return modelMapper.map(route, RouteDetailViewModel.class);
+        RouteDetailViewModel routeDetailViewModel = modelMapper.map(route, RouteDetailViewModel.class);
+        routeDetailViewModel.setAuthorName(route.getAuthor().getFullName());
+
+        return routeDetailViewModel;
     }
 
 

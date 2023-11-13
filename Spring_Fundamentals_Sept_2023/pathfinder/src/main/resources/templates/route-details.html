@@ -77,20 +77,29 @@
         </section>
         <section class="comments">
             <h1>Comments</h1>
-
+            <div class="comments">
+                <div class="form-group" th:each="comment : ${route.comments}">
+                    <h4 th:text="${comment.content}">Leave a comment</h4>
+                    <label th:text="${comment.authorName}">Message</label>
+                </div>
+            </div>
             <div>
                 <!-- Comments submission -->
-                <form id="commentForm" method="POST"
-                      action="/">
+                <form id="commentForm"
+                      th:method="POST"
+                      th:action="@{/comments}">
                     <div class="form-group">
                         <h4>Leave a comment</h4>
                         <label for="message">Message</label>
-                        <textarea name="message"
+                        <input type="hidden" name="routeId"
+                               th:value="${route.id}">
+                        <textarea name="textContent"
                                   id="message"
                                   cols="30"
                                   rows="5"
                                   class="form-control"
                                   style="background-color: white;"></textarea>
+
                         <small id="messageError" class="invalid-feedback">
                             Message should be at least 10 characters.
                         </small>

@@ -57,4 +57,13 @@ public class Comment extends BaseEntity{
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public Comment setRoute(Route route) {
+        this.route = route;
+        return this;
+    }
 }
