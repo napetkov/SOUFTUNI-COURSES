@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +33,9 @@ public class SecurityConfiguration {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 //Allow anyone to see the home page, the register page and login page
                                 .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
-                                .requestMatchers("/offer/add").permitAll()
+                                .requestMatchers("/offers/all").permitAll()
+                                .requestMatchers(HttpMethod.GET,"offer/**").permitAll()
+                                .requestMatchers("/error").permitAll()
                                 .requestMatchers("/brands").hasRole(UserRoleEnum.ADMIN.name())
                                 //All other request authenticated
                                 .anyRequest().authenticated()

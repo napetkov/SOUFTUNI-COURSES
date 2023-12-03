@@ -36,10 +36,10 @@ public class OfferEntity extends BaseEntity{
     private BigDecimal price;
     @Positive
     @Min(1930)
+    @YearNotInTheFuture
     private int year;
     @NotNull
     @ManyToOne
-    @YearNotInTheFuture
     private ModelEntity model;
 
     public String getDescription() {
