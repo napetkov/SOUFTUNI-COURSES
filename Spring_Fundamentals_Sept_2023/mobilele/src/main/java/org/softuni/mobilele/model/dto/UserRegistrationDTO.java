@@ -5,4 +5,7 @@ public record UserRegistrationDTO(String firstName,
                                   String email,
                                   String password,
                                   String confirmPassword) {
+public String fullName(){
+    return firstName + " " + lastName;
+}
 }
