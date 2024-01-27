@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a87db94c-caee-4d4c-ba75-ec1bda2ca1e6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Spring_Advance_Oct_2023/book-service/src/main/java/bg/softuni/bookservice/init/DBInit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Spring_Advance_Oct_2023/book-service/src/main/java/bg/softuni/bookservice/model/entity/AuthorEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Spring_Advance_Oct_2023/book-service/src/main/java/bg/softuni/bookservice/model/entity/BookEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Spring_Advance_Oct_2023/book-service/src/main/java/bg/softuni/bookservice/repository/AuthorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Spring_Advance_Oct_2023/book-service/src/main/java/bg/softuni/bookservice/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/config/ConfigApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/controller/OfferController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/init/InitCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/dto/user/UserLoginBindingModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/dto/user/UserRegisterBindingModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/entity/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/entity/Offer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/model/enums/ConditionName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/repository/ConditionsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/repository/OfferRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/service/LoggedUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResellerApp/src/main/java/com/resellerapp/service/impl/UserServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2XEuGuYzePYw59oZ9jMxtiOdm4P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/SOUFTUNI-COURSES/Spring_Fundamentals_Sept_2023/ResellerApp_MySolution",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ResellerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ResellerApp" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.resellerapp.ResellerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a87db94c-caee-4d4c-ba75-ec1bda2ca1e6" name="Changes" comment="" />
+      <created>1698206467884</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698206467884</updated>
+      <workItem from="1698206468965" duration="127000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

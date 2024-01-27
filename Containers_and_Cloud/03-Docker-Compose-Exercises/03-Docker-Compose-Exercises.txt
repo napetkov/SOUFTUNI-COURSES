@@ -1,0 +1,13 @@
+1. docker run -d --name ls-server -p 80:8080 lightstreamer:latest
+2. docker run -d --name ghost-container -p 3001:2368 -e NODE_ENV=development ghost
+3. docker run --name my-apache-app -p 8080:80 -d -v %cd%:/usr/local/apache2/htdocs/ httpd
+4. docker run -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=yourStrongPassword#12 -p 1433:1433 -d mcr.microsoft.com/mssql/server
+5. 
+	- docker run -d --network mariadb_network --name mariadb --env MARIADB_USER=example-user --env MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb
+	- docker run -it --network mariadb_network --name mariadb mariadb -hmariadb -uexample-user -p
+6. docker build -t taskboard -f TaskBoard.WebApp\Dockerfile .
+8.
+ 	8.1. docker run -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=myStrongPassword12# --name sqlserver -p 1433:1433 -d -v sqldata:/var/opt/msql --network taskboard_network mcr.microsoft.com/mssql/server
+	8.2 docker build -t napetkov/taskboard -f TaskBoard.WebApp\Dockerfile .                                                                                                                  
+	8.3 docker push napetkov/taskboard                                                                                                                                
+	8.4 docker run -d -p 5000:80 --name taskboard --network taskboard_network napetkov/taskboard
