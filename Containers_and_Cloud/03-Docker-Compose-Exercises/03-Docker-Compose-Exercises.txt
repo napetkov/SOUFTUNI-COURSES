@@ -16,3 +16,5 @@
 	9.2 docker run -d --name backend --network express-mongo backend
 	9.3 docker network connect react-express backend
 	9.4 docker run -d -p 3000:3000 --network react-express --name frontend frontend
+10. Docker-compose file and debug mode
+11. 
